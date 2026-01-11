@@ -555,20 +555,22 @@ _A list defining 3-4 key terms introduced in this lesson. E.g., "Reactivity", "S
 
 #### 5. Algorithmic Thinking (Planning the Solution)
 
-- **The Plan (Narrative):** In 3-5 steps, explain the thinking process for implementing the scenario.
-
+- **The Plan (State-First Approach):** Explain the thinking process in this specific order:
+  1.  **State:** What data do we need? (Define `ref`/`reactive` variables)
+  2.  **Actions:** How does the data change? (Define functions/handlers)
+  3.  **View:** How is it displayed? (Define template structure)
   - _Visual Instruction:_ Use a **Mermaid.js sequence diagram** or **flowchart**:
 
-  ```mermaid
-  sequenceDiagram
-      participant User
-      participant Component
-      participant Store
-      User->>Component: Triggers Action
-      Component->>Store: Updates State
-      Store-->>Component: Reactivity Notifies
-      Component-->>User: UI Updates
-  ```
+```mermaid
+sequenceDiagram
+    participant User
+    participant Component
+    participant Store
+    User->>Component: Triggers Action
+    Component->>Store: Updates State
+    Store-->>Component: Reactivity Notifies
+    Component-->>User: UI Updates
+```
 
 #### 6. Initial Pattern Introduction
 
