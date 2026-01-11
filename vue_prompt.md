@@ -323,12 +323,13 @@ graph TD
 
 ---
 
-### Module 7: Data Fetching & APIs (Lessons 16-17)
+### Module 7: Data Fetching & APIs (Lessons 16-18)
 
 _Communicating with backend services and handling async data._
 
-16. **Fetching Data: Async/Await & Lifecycle**
-17. **Building a `useFetch` Composable**
+16. **Basic Data Fetching: `fetch()` & `onMounted`**
+17. **Async User Experience: Loading & Error States**
+18. **Abstracting Data: Building a `useFetch` Composable**
 
 📋 **Module 7 Checkpoint Projects:**
 
@@ -358,12 +359,13 @@ stateDiagram-v2
 
 ---
 
-### Module 8: Navigation (Lessons 18-19)
+### Module 8: Navigation (Lessons 19-21)
 
 _Client-side routing and navigation guards._
 
-18. **Routing I: Basic Navigation with Vue Router**
-19. **Routing II: Dynamic Routes & Route Guards**
+19. **Routing Fundamentals: Setup & Links**
+20. **Dynamic Routing: Params & 404s**
+21. **Navigation Control: Programmatic Nav & Guards**
 
 📋 **Module 8 Checkpoint Projects:**
 
@@ -392,12 +394,13 @@ graph LR
 
 ---
 
-### Module 9: State Management (Lessons 20-21)
+### Module 9: State Management (Lessons 22-24)
 
 _Centralized application state with Pinia._
 
-20. **State Management I: Pinia Stores (State & Actions)**
-21. **State Management II: Pinia Getters & Plugins**
+22. **Pinia Fundamentals: The Store Pattern**
+23. **Modifying State: Actions & Business Logic**
+24. **Advanced Pinia: Getters & Persistence**
 
 📋 **Module 9 Checkpoint Projects:**
 
@@ -429,14 +432,14 @@ graph TD
 
 ---
 
-### Module 10: Advanced Patterns & Deployment (Lessons 22-25)
+### Module 10: Advanced Patterns & Deployment (Lessons 25-28)
 
 _Performance, testing, and production deployment._
 
-22. **Async Components & Suspense**
-23. **Introduction to Component Testing**
-24. **Basic Performance Optimization**
-25. **Build & Deploy with Vite**
+25. **Async Components & Suspense**
+26. **Introduction to Component Testing**
+27. **Basic Performance Optimization**
+28. **Build & Deploy with Vite**
 
 📋 **Module 10 Checkpoint Projects:**
 
@@ -474,12 +477,12 @@ graph LR
 
 | Metric                        |    Count     |
 | :---------------------------- | :----------: |
-| Total Topics                  |      25      |
-| Micro-Lessons (×2 per topic)  |    **50**    |
+| Total Topics                  |    **28**    |
+| Micro-Lessons (×2 per topic)  |    **56**    |
 | Simple Dummy Projects         |    **34**    |
 | Real-World Projects           |    **30**    |
 | **Total Checkpoint Projects** |    **64**    |
-| Total Estimated Time          | ~28-32 hours |
+| Total Estimated Time          | ~32-36 hours |
 
 ```mermaid
 pie title Project Distribution
