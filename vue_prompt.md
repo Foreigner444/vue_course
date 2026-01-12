@@ -519,12 +519,16 @@ _(Est. Time: 30-35 minutes)_
 1. **Remember:** [Define/list key concepts]
 2. **Understand:** [Explain how the feature works conceptually]
 
-#### 2. Real-World Scenario & Context
+#### 2. JS/TS Toolkit (Refresher)
+
+_Briefly explain 1-2 specific JavaScript/TypeScript concepts that are essential for this lesson (e.g., Destructuring, Arrow Functions, Spread Operator)._
+
+#### 3. Real-World Scenario & Context
 
 - **Scenario (1 paragraph):** Describe a simple, relatable situation where this lesson's concept is needed.
 - **Framework Context (1-2 sentences):** Briefly state what problem Vue is solving here.
 
-#### 3. Core Concepts Explained (Deep Dive)
+#### 4. Core Concepts Explained (Deep Dive)
 
 - **How It Actually Works:** Explain the underlying mechanism in detail. What is Vue doing "under the hood"?
 
@@ -549,11 +553,11 @@ _(Est. Time: 30-35 minutes)_
       Q -->|No| S[Use reactive]
   ```
 
-#### 4. New Terminology
+#### 5. New Terminology
 
 _A list defining 3-4 key terms introduced in this lesson. E.g., "Reactivity", "Single File Component", "Composition API", etc._
 
-#### 5. Algorithmic Thinking (Planning the Solution)
+#### 6. Algorithmic Thinking (Planning the Solution)
 
 - **The Plan (State-First Approach):** Explain the thinking process in this specific order:
   1.  **State:** What data do we need? (Define `ref`/`reactive` variables)
@@ -572,7 +576,7 @@ sequenceDiagram
     Component-->>User: UI Updates
 ```
 
-#### 6. Initial Pattern Introduction
+#### 7. Initial Pattern Introduction
 
 _Show the basic syntax pattern with a simple example._
 
@@ -589,7 +593,7 @@ _Show the basic syntax pattern with a simple example._
 </template>
 ```
 
-#### 7. Comprehension Check
+#### 8. Comprehension Check
 
 _3 quick questions to verify understanding before moving to practice._
 
