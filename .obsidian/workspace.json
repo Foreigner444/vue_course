@@ -1,0 +1,204 @@
+{
+  "main": {
+    "id": "cf7f3cd516e943bf",
+    "type": "split",
+    "children": [
+      {
+        "id": "475b10f7376c0efd",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "6bd680e146267d75",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "7bc11e770af7f12f",
+    "type": "split",
+    "children": [
+      {
+        "id": "847de6226d7ffdda",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "38e8e83875cecb5f",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "17430fcf9a81f2c9",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "26860ddd6ce13d66",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200
+  },
+  "right": {
+    "id": "57ae00e542b653de",
+    "type": "split",
+    "children": [
+      {
+        "id": "3db5d7d7f9887622",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "cbec33edd8339816",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
+            }
+          },
+          {
+            "id": "a10b7000876c3502",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
+            }
+          },
+          {
+            "id": "dee843f2f8cd33a1",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "39e9eea1bc50ff93",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "fdde87e35990ff31",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "6bd680e146267d75",
+  "lastOpenFiles": [
+    "lessons/updated_lessons/lesson-5.2-watch-practice.md",
+    "lessons/updated_lessons/lesson-5.1-watch-theory.md",
+    "lessons/updated_lessons/module_1/lesson-4.2-computed-practice.md",
+    "lessons/updated_lessons/module_1/lesson-4.1-computed-theory.md",
+    "lessons/updated_lessons/lesson-4.2-computed-practice.md",
+    "lessons/updated_lessons/lesson-4.1-computed-theory.md",
+    "lessons/updated_lessons/module_1/lesson-3.2-reactive-practice.md",
+    "lessons/updated_lessons/module_1/lesson-3.1-reactive-theory.md",
+    "lessons/updated_lessons/lesson-3.2-reactive-practice.md",
+    "lessons/updated_lessons/lesson-3.1-reactive-theory.md",
+    "lessons/updated_lessons/module_1/lesson-2.2-ref-practice.md",
+    "lessons/updated_lessons/module_1/lesson-2.1-ref-theory.md",
+    "lessons/updated_lessons/lesson-2.2-ref-practice.md",
+    "lessons/updated_lessons/lesson-2.1-ref-theory.md",
+    "lessons/updated_lessons/lesson-1.2-first-component-practice.md",
+    "lessons/updated_lessons/module_1/lesson-1.2-first-component-practice.md",
+    "lessons/updated_lessons/module_1/lesson-1.1-first-component-theory.md",
+    "lessons/updated_lessons/module_1",
+    "lessons/updated_lessons/lesson-1.1-first-component-theory.md",
+    "lessons/module_1/lesson-4.1.md",
+    "lessons/updated_lessons",
+    "lessons/module_1/lesson-1.2.md"
+  ]
+}
