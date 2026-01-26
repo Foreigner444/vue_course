@@ -2,17 +2,18 @@
 
 ## 1. Lesson Metadata
 
-| Field | Value |
-|:--- |:--- |
-| **Lesson Number** | 4.1 of 25 (Part 1 of 2) |
-| **Topic** | Derived State with `computed()` / Вычисляемые свойства с computed() |
-| **Module** | Module 1: Core Fundamentals |
-| **Prerequisites** | Lessons 1, 2, 3 (Components, ref(), reactive()) |
+| Field               | Value                                                                  |
+| :------------------ | :--------------------------------------------------------------------- |
+| **Lesson Number**   | 4.1 of 25 (Part 1 of 2)                                                |
+| **Topic**           | Derived State with `computed()` / Вычисляемые свойства с computed()    |
+| **Module**          | Module 1: Core Fundamentals                                            |
+| **Prerequisites**   | Lessons 1, 2, 3 (Components, ref(), reactive())                        |
 | **You Should Know** | ref() and reactive() usage, TypeScript generics, getter/setter concept |
-| **Unlocks** | Lesson 4.2, then Lesson 5 |
-| **Duration** | 30-35 minutes |
+| **Unlocks**         | Lesson 4.2, then Lesson 5                                              |
+| **Duration**        | 30-35 minutes                                                          |
 
 **Learning Objectives — Part 1 (Theory):**
+
 1. **Remember:** Define `computed()` and explain its purpose for derived state
 2. **Understand:** Explain how computed properties cache their results and when they recalculate
 
@@ -116,17 +117,17 @@ Think of `computed()` as a **"smart formula cell" in a spreadsheet**:
 ```typescript
 // ❌ Regular function: recalculates EVERY time it's called
 const getTotal = (): number => {
-  console.log('Calculating...')  // Runs on EVERY call
-  return price.value * qty.value
-}
+  console.log("Calculating..."); // Runs on EVERY call
+  return price.value * qty.value;
+};
 
 // In template: {{ getTotal() }} — calls function every render!
 
 // ✅ Computed: recalculates only when dependencies change
 const total = computed(() => {
-  console.log('Calculating...')  // Runs only when price/qty change
-  return price.value * qty.value
-})
+  console.log("Calculating..."); // Runs only when price/qty change
+  return price.value * qty.value;
+});
 
 // In template: {{ total }} — uses cached value if unchanged!
 ```
@@ -151,21 +152,21 @@ const total = computed(() => {
 
 ### In Other Contexts
 
-| Framework | Equivalent to Vue's `computed()` |
-|:--- |:--- |
-| **Vue 3** | `computed()` |
-| **React** | `useMemo()` hook |
-| **Angular** | Pipes or getters |
-| **MobX** | `@computed` decorator |
-| **Svelte** | `$:` reactive declarations |
-| **Solid.js** | `createMemo()` |
+| Framework    | Equivalent to Vue's `computed()` |
+| :----------- | :------------------------------- |
+| **Vue 3**    | `computed()`                     |
+| **React**    | `useMemo()` hook                 |
+| **Angular**  | Pipes or getters                 |
+| **MobX**     | `@computed` decorator            |
+| **Svelte**   | `$:` reactive declarations       |
+| **Solid.js** | `createMemo()`                   |
 
 ```typescript
 // Vue 3
-const doubled = computed(() => count.value * 2)
+const doubled = computed(() => count.value * 2);
 
 // React (for comparison)
-const doubled = useMemo(() => count * 2, [count])
+const doubled = useMemo(() => count * 2, [count]);
 // Note: React requires manual dependency array!
 
 // Vue tracks dependencies automatically — no array needed!
@@ -173,25 +174,25 @@ const doubled = useMemo(() => count * 2, [count])
 
 ### When to Use / When NOT to Use
 
-| ✅ Use `computed()` When | ❌ Don't Use `computed()` When |
-|:--- |:--- |
-| Value derives from other reactive state | Value doesn't depend on reactive state |
-| Same derived value needed in multiple places | One-time calculation (just use const) |
+| ✅ Use `computed()` When                         | ❌ Don't Use `computed()` When                       |
+| :----------------------------------------------- | :--------------------------------------------------- |
+| Value derives from other reactive state          | Value doesn't depend on reactive state               |
+| Same derived value needed in multiple places     | One-time calculation (just use const)                |
 | Expensive calculations that benefit from caching | Simple calculations (overhead might not be worth it) |
-| Filtering/sorting lists | Async operations (use watch + ref instead) |
-| Formatting data for display | Side effects needed (use watch) |
+| Filtering/sorting lists                          | Async operations (use watch + ref instead)           |
+| Formatting data for display                      | Side effects needed (use watch)                      |
 
 ---
 
 ## 4. New Terminology
 
-| Term | Definition |
-|:--- |:--- |
-| **`computed()`** | Vue function that creates a cached, reactive derived value |
-| **Derived State** | Values that are calculated from other state (not stored directly) |
-| **Caching** | Storing the result of a calculation to avoid redundant work |
-| **Dependency Tracking** | Vue automatically detecting which reactive values a computed uses |
-| **Writable Computed** | A computed property with both getter and setter (two-way derived state) |
+| Term                    | Definition                                                              |
+| :---------------------- | :---------------------------------------------------------------------- |
+| **`computed()`**        | Vue function that creates a cached, reactive derived value              |
+| **Derived State**       | Values that are calculated from other state (not stored directly)       |
+| **Caching**             | Storing the result of a calculation to avoid redundant work             |
+| **Dependency Tracking** | Vue automatically detecting which reactive values a computed uses       |
+| **Writable Computed**   | A computed property with both getter and setter (two-way derived state) |
 
 ---
 
@@ -247,28 +248,28 @@ Does the value derive from reactive state?
 
 ## 6. Initial Pattern Introduction
 
-| What You Want (Intent) | Code Chunk (The Pattern) | Conceptual Link |
-|:--- |:--- |:--- |
-| Create read-only computed | `computed(() => expression)` | Cached getter |
-| Create writable computed | `computed({ get(), set() })` | Two-way derived |
-| Access computed value | `myComputed.value` (script) or `{{ myComputed }}` (template) | Like ref |
-| Type a computed | `computed<Type>(() => ...)` | TypeScript inference |
+| What You Want (Intent)    | Code Chunk (The Pattern)                                     | Conceptual Link      |
+| :------------------------ | :----------------------------------------------------------- | :------------------- |
+| Create read-only computed | `computed(() => expression)`                                 | Cached getter        |
+| Create writable computed  | `computed({ get(), set() })`                                 | Two-way derived      |
+| Access computed value     | `myComputed.value` (script) or `{{ myComputed }}` (template) | Like ref             |
+| Type a computed           | `computed<Type>(() => ...)`                                  | TypeScript inference |
 
 ```vue
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed } from "vue";
 
 // ============================================
 // SOURCE STATE (what can be directly modified)
 // ============================================
-const firstName = ref('John')
-const lastName = ref('Doe')
-const price = ref(29.99)
-const quantity = ref(2)
+const firstName = ref("John");
+const lastName = ref("Doe");
+const price = ref(29.99);
+const quantity = ref(2);
 const items = ref([
-  { name: 'Apple', price: 1.5, qty: 3 },
-  { name: 'Banana', price: 0.75, qty: 5 }
-])
+  { name: "Apple", price: 1.5, qty: 3 },
+  { name: "Banana", price: 0.75, qty: 5 },
+]);
 
 // ============================================
 // COMPUTED PROPERTIES (derived from source)
@@ -276,31 +277,31 @@ const items = ref([
 
 // Simple computed: combines two refs
 const fullName = computed(() => {
-  return `${firstName.value} ${lastName.value}`
-})
+  return `${firstName.value} ${lastName.value}`;
+});
 
 // Computed with calculation
 const subtotal = computed(() => {
-  return price.value * quantity.value
-})
+  return price.value * quantity.value;
+});
 
 // Computed with array method
 const totalItems = computed(() => {
-  return items.value.reduce((sum, item) => sum + item.qty, 0)
-})
+  return items.value.reduce((sum, item) => sum + item.qty, 0);
+});
 
 // Computed with formatting
 const formattedPrice = computed(() => {
-  return new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD'
-  }).format(subtotal.value)
-})
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  }).format(subtotal.value);
+});
 
 // Computed boolean (condition)
 const freeShipping = computed(() => {
-  return subtotal.value >= 50
-})
+  return subtotal.value >= 50;
+});
 
 // ============================================
 // WRITABLE COMPUTED (get + set)
@@ -309,20 +310,20 @@ const freeShipping = computed(() => {
 // fullName can now be set, and it updates firstName/lastName
 const fullNameWritable = computed({
   get() {
-    return `${firstName.value} ${lastName.value}`
+    return `${firstName.value} ${lastName.value}`;
   },
   set(newValue: string) {
-    const parts = newValue.split(' ')
-    firstName.value = parts[0] || ''
-    lastName.value = parts.slice(1).join(' ') || ''
-  }
-})
+    const parts = newValue.split(" ");
+    firstName.value = parts[0] || "";
+    lastName.value = parts.slice(1).join(" ") || "";
+  },
+});
 
 // ============================================
 // USAGE NOTE
 // ============================================
 // In script: use .value (like ref)
-console.log(fullName.value)  // "John Doe"
+console.log(fullName.value); // "John Doe"
 
 // In template: auto-unwrapped (no .value)
 // {{ fullName }} displays "John Doe"
@@ -332,26 +333,38 @@ console.log(fullName.value)  // "John Doe"
   <div class="p-6 space-y-4">
     <!-- Source inputs -->
     <div>
-      <input v-model="firstName" placeholder="First name" class="border p-2 mr-2" />
+      <input
+        v-model="firstName"
+        placeholder="First name"
+        class="border p-2 mr-2"
+      />
       <input v-model="lastName" placeholder="Last name" class="border p-2" />
     </div>
-    
+
     <!-- Computed display (read-only) -->
-    <p>Full Name: <strong>{{ fullName }}</strong></p>
-    
+    <p>
+      Full Name: <strong>{{ fullName }}</strong>
+    </p>
+
     <!-- Writable computed -->
     <div>
-      <input v-model="fullNameWritable" placeholder="Full name" class="border p-2" />
+      <input
+        v-model="fullNameWritable"
+        placeholder="Full name"
+        class="border p-2"
+      />
       <p class="text-sm text-gray-500">Edit full name directly!</p>
     </div>
-    
+
     <!-- Shopping example -->
     <div class="border-t pt-4">
       <p>Price: ${{ price }} × {{ quantity }} = {{ formattedPrice }}</p>
       <p v-if="freeShipping" class="text-green-600">✓ Free shipping!</p>
-      <p v-else class="text-gray-500">Add ${{ (50 - subtotal).toFixed(2) }} for free shipping</p>
+      <p v-else class="text-gray-500">
+        Add ${{ (50 - subtotal).toFixed(2) }} for free shipping
+      </p>
     </div>
-    
+
     <!-- Array computed -->
     <p>Total items in cart: {{ totalItems }}</p>
   </div>
@@ -359,6 +372,7 @@ console.log(fullName.value)  // "John Doe"
 ```
 
 **Key Points:**
+
 - Import `computed` from Vue
 - Computed returns a `ComputedRef` — use `.value` in script
 - Template auto-unwraps — no `.value` needed
@@ -370,9 +384,11 @@ console.log(fullName.value)  // "John Doe"
 ## 7. Comprehension Check
 
 1. **Why is `computed()` more efficient than a regular function for derived values?**
+
    - Think about what happens when the template re-renders.
 
 2. **What triggers a computed property to recalculate its value?**
+
    - Consider how Vue knows when to invalidate the cache.
 
 3. **True or False: You must manually specify the dependencies of a computed property like in React's `useMemo`.**
@@ -380,4 +396,4 @@ console.log(fullName.value)  // "John Doe"
 
 ---
 
-*Reply 'next' for Lesson 4.2 (Practice).*
+_Reply 'next' for Lesson 4.2 (Practice)._

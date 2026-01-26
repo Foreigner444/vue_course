@@ -2,17 +2,18 @@
 
 ## 1. Lesson Metadata
 
-| Field | Value |
-|:--- |:--- |
-| **Lesson Number** | 5.1 of 25 (Part 1 of 2) |
-| **Topic** | Running Side Effects with `watch()` / Отслеживание изменений с watch() |
-| **Module** | Module 1: Core Fundamentals |
-| **Prerequisites** | Lessons 1-4 (Components, ref(), reactive(), computed()) |
-| **You Should Know** | ref(), reactive(), computed(), async/await, side effects concept |
-| **Unlocks** | Lesson 5.2, then Module 1 Checkpoint Projects |
-| **Duration** | 30-35 minutes |
+| Field               | Value                                                                  |
+| :------------------ | :--------------------------------------------------------------------- |
+| **Lesson Number**   | 5.1 of 25 (Part 1 of 2)                                                |
+| **Topic**           | Running Side Effects with `watch()` / Отслеживание изменений с watch() |
+| **Module**          | Module 1: Core Fundamentals                                            |
+| **Prerequisites**   | Lessons 1-4 (Components, ref(), reactive(), computed())                |
+| **You Should Know** | ref(), reactive(), computed(), async/await, side effects concept       |
+| **Unlocks**         | Lesson 5.2, then Module 1 Checkpoint Projects                          |
+| **Duration**        | 30-35 minutes                                                          |
 
 **Learning Objectives — Part 1 (Theory):**
+
 1. **Remember:** Define `watch()` and distinguish it from `computed()`
 2. **Understand:** Explain when to use watch for side effects vs computed for derived values
 
@@ -21,6 +22,7 @@
 ## 2. Real-World Scenario & Context
 
 **Scenario:** You're building a search feature for a product catalog. As the user types in the search box, you want to:
+
 1. **Debounce** the input (wait 300ms after they stop typing)
 2. **Fetch** matching products from an API
 3. **Save** the search term to localStorage for history
@@ -118,45 +120,42 @@ Think of `watch()` as a **security camera with an alarm system**:
 ### Three Ways to Watch
 
 ```typescript
-import { ref, reactive, watch, watchEffect } from 'vue'
+import { ref, reactive, watch, watchEffect } from "vue";
 
-const count = ref(0)
-const state = reactive({ name: 'Vue', count: 0 })
+const count = ref(0);
+const state = reactive({ name: "Vue", count: 0 });
 
 // 1. Watch a single ref
 watch(count, (newVal, oldVal) => {
-  console.log(`count: ${oldVal} → ${newVal}`)
-})
+  console.log(`count: ${oldVal} → ${newVal}`);
+});
 
 // 2. Watch a specific property of reactive object (use getter)
 watch(
   () => state.name,
   (newName, oldName) => {
-    console.log(`name: ${oldName} → ${newName}`)
+    console.log(`name: ${oldName} → ${newName}`);
   }
-)
+);
 
 // 3. Watch multiple sources
-watch(
-  [count, () => state.name],
-  ([newCount, newName], [oldCount, oldName]) => {
-    console.log(`count: ${oldCount} → ${newCount}`)
-    console.log(`name: ${oldName} → ${newName}`)
-  }
-)
+watch([count, () => state.name], ([newCount, newName], [oldCount, oldName]) => {
+  console.log(`count: ${oldCount} → ${newCount}`);
+  console.log(`name: ${oldName} → ${newName}`);
+});
 ```
 
 ### watchEffect() — The Auto-Tracking Alternative
 
 ```typescript
-import { watchEffect } from 'vue'
+import { watchEffect } from "vue";
 
 // watchEffect automatically tracks ALL reactive deps used inside
 watchEffect(() => {
-  console.log(`count is ${count.value}`)  // Tracks count
-  console.log(`name is ${state.name}`)    // Tracks state.name
+  console.log(`count is ${count.value}`); // Tracks count
+  console.log(`name is ${state.name}`); // Tracks state.name
   // Runs immediately, then on any change to count or state.name
-})
+});
 
 // Comparison:
 // watch() = You specify what to watch
@@ -165,50 +164,50 @@ watchEffect(() => {
 
 ### In Other Contexts
 
-| Framework | Equivalent to Vue's `watch()` |
-|:--- |:--- |
-| **Vue 3** | `watch()` / `watchEffect()` |
-| **React** | `useEffect()` hook |
+| Framework   | Equivalent to Vue's `watch()`       |
+| :---------- | :---------------------------------- |
+| **Vue 3**   | `watch()` / `watchEffect()`         |
+| **React**   | `useEffect()` hook                  |
 | **Angular** | `ngOnChanges` or RxJS subscriptions |
-| **MobX** | `reaction()` / `autorun()` |
-| **Svelte** | `$:` reactive statements |
+| **MobX**    | `reaction()` / `autorun()`          |
+| **Svelte**  | `$:` reactive statements            |
 
 ```typescript
 // Vue 3
 watch(count, (newVal) => {
-  document.title = `Count: ${newVal}`
-})
+  document.title = `Count: ${newVal}`;
+});
 
 // React equivalent
 useEffect(() => {
-  document.title = `Count: ${count}`
-}, [count])  // Must specify deps manually!
+  document.title = `Count: ${count}`;
+}, [count]); // Must specify deps manually!
 
 // Vue's watch auto-tracks deps when using watchEffect()
 ```
 
 ### When to Use / When NOT to Use
 
-| ✅ Use `watch()` When | ❌ Don't Use `watch()` When |
-|:--- |:--- |
-| Making API calls based on data changes | Computing derived values (use computed) |
-| Saving to localStorage/sessionStorage | Simple data transformations |
-| Logging/analytics events | Modifying other reactive state (usually) |
-| DOM manipulation (rarely needed in Vue) | Synchronous calculations |
-| Debouncing user input | Values needed in template |
+| ✅ Use `watch()` When                   | ❌ Don't Use `watch()` When              |
+| :-------------------------------------- | :--------------------------------------- |
+| Making API calls based on data changes  | Computing derived values (use computed)  |
+| Saving to localStorage/sessionStorage   | Simple data transformations              |
+| Logging/analytics events                | Modifying other reactive state (usually) |
+| DOM manipulation (rarely needed in Vue) | Synchronous calculations                 |
+| Debouncing user input                   | Values needed in template                |
 
 ---
 
 ## 4. New Terminology
 
-| Term | Definition |
-|:--- |:--- |
-| **`watch()`** | Vue function that runs a callback when watched reactive sources change |
-| **`watchEffect()`** | Variant that auto-tracks dependencies and runs immediately |
-| **Side Effect** | Any operation that affects something outside the function (API calls, DOM changes, logging) |
-| **Immediate** | Option to run the watcher callback immediately on setup |
-| **Deep** | Option to watch nested properties of objects/arrays |
-| **Flush** | Controls when the callback runs relative to Vue's update cycle |
+| Term                | Definition                                                                                  |
+| :------------------ | :------------------------------------------------------------------------------------------ |
+| **`watch()`**       | Vue function that runs a callback when watched reactive sources change                      |
+| **`watchEffect()`** | Variant that auto-tracks dependencies and runs immediately                                  |
+| **Side Effect**     | Any operation that affects something outside the function (API calls, DOM changes, logging) |
+| **Immediate**       | Option to run the watcher callback immediately on setup                                     |
+| **Deep**            | Option to watch nested properties of objects/arrays                                         |
+| **Flush**           | Controls when the callback runs relative to Vue's update cycle                              |
 
 ---
 
@@ -273,53 +272,53 @@ Return a calculated value?
 
 ## 6. Initial Pattern Introduction
 
-| What You Want (Intent) | Code Chunk (The Pattern) | Conceptual Link |
-|:--- |:--- |:--- |
-| Watch a ref | `watch(myRef, (new, old) => {...})` | Basic watcher |
-| Watch reactive property | `watch(() => state.prop, cb)` | Getter function |
-| Watch multiple sources | `watch([ref1, ref2], ([n1, n2], [o1, o2]) => {...})` | Array of sources |
-| Run immediately | `watch(src, cb, { immediate: true })` | Execute on setup |
-| Watch nested objects | `watch(src, cb, { deep: true })` | Deep observation |
-| Auto-track dependencies | `watchEffect(() => {...})` | Runs immediately |
+| What You Want (Intent)  | Code Chunk (The Pattern)                             | Conceptual Link  |
+| :---------------------- | :--------------------------------------------------- | :--------------- |
+| Watch a ref             | `watch(myRef, (new, old) => {...})`                  | Basic watcher    |
+| Watch reactive property | `watch(() => state.prop, cb)`                        | Getter function  |
+| Watch multiple sources  | `watch([ref1, ref2], ([n1, n2], [o1, o2]) => {...})` | Array of sources |
+| Run immediately         | `watch(src, cb, { immediate: true })`                | Execute on setup |
+| Watch nested objects    | `watch(src, cb, { deep: true })`                     | Deep observation |
+| Auto-track dependencies | `watchEffect(() => {...})`                           | Runs immediately |
 
 ```vue
 <script setup lang="ts">
-import { ref, reactive, watch, watchEffect, onWatcherCleanup } from 'vue'
+import { ref, reactive, watch, watchEffect, onWatcherCleanup } from "vue";
 
 // ============================================
 // REACTIVE STATE
 // ============================================
 
-const searchQuery = ref('')
-const userId = ref(1)
+const searchQuery = ref("");
+const userId = ref(1);
 const settings = reactive({
-  theme: 'light',
-  notifications: true
-})
+  theme: "light",
+  notifications: true,
+});
 
-const results = ref<string[]>([])
-const isLoading = ref(false)
+const results = ref<string[]>([]);
+const isLoading = ref(false);
 
 // ============================================
 // BASIC WATCH (single ref)
 // ============================================
 
 watch(searchQuery, async (newQuery, oldQuery) => {
-  console.log(`Search changed: "${oldQuery}" → "${newQuery}"`)
-  
+  console.log(`Search changed: "${oldQuery}" → "${newQuery}"`);
+
   if (!newQuery.trim()) {
-    results.value = []
-    return
+    results.value = [];
+    return;
   }
-  
-  isLoading.value = true
-  
+
+  isLoading.value = true;
+
   // Simulate API call
-  await new Promise(resolve => setTimeout(resolve, 500))
-  results.value = [`Result for: ${newQuery}`]
-  
-  isLoading.value = false
-})
+  await new Promise((resolve) => setTimeout(resolve, 500));
+  results.value = [`Result for: ${newQuery}`];
+
+  isLoading.value = false;
+});
 
 // ============================================
 // WATCH WITH IMMEDIATE (runs on mount)
@@ -328,36 +327,33 @@ watch(searchQuery, async (newQuery, oldQuery) => {
 watch(
   userId,
   async (newId) => {
-    console.log(`Fetching user ${newId}...`)
+    console.log(`Fetching user ${newId}...`);
     // Fetch user data immediately when component mounts
   },
-  { immediate: true }  // Run callback right away with current value
-)
+  { immediate: true } // Run callback right away with current value
+);
 
 // ============================================
 // WATCH REACTIVE PROPERTY (use getter)
 // ============================================
 
 watch(
-  () => settings.theme,  // Getter function for reactive property
+  () => settings.theme, // Getter function for reactive property
   (newTheme, oldTheme) => {
-    console.log(`Theme changed: ${oldTheme} → ${newTheme}`)
-    document.documentElement.setAttribute('data-theme', newTheme)
+    console.log(`Theme changed: ${oldTheme} → ${newTheme}`);
+    document.documentElement.setAttribute("data-theme", newTheme);
   }
-)
+);
 
 // ============================================
 // WATCH MULTIPLE SOURCES
 // ============================================
 
-watch(
-  [searchQuery, userId],
-  ([newQuery, newUserId], [oldQuery, oldUserId]) => {
-    console.log('Multiple values changed:')
-    console.log(`  Query: ${oldQuery} → ${newQuery}`)
-    console.log(`  User ID: ${oldUserId} → ${newUserId}`)
-  }
-)
+watch([searchQuery, userId], ([newQuery, newUserId], [oldQuery, oldUserId]) => {
+  console.log("Multiple values changed:");
+  console.log(`  Query: ${oldQuery} → ${newQuery}`);
+  console.log(`  User ID: ${oldUserId} → ${newUserId}`);
+});
 
 // ============================================
 // DEEP WATCH (nested objects)
@@ -366,11 +362,11 @@ watch(
 watch(
   settings,
   (newSettings) => {
-    console.log('Settings changed:', newSettings)
-    localStorage.setItem('settings', JSON.stringify(newSettings))
+    console.log("Settings changed:", newSettings);
+    localStorage.setItem("settings", JSON.stringify(newSettings));
   },
-  { deep: true }  // Watch ALL nested properties
-)
+  { deep: true } // Watch ALL nested properties
+);
 
 // ============================================
 // WATCHEFFECT (auto-track dependencies)
@@ -379,54 +375,52 @@ watch(
 watchEffect(() => {
   // This automatically tracks searchQuery and userId
   // because they're accessed inside
-  console.log(`Auto-tracked: search="${searchQuery.value}", user=${userId.value}`)
-})
+  console.log(
+    `Auto-tracked: search="${searchQuery.value}", user=${userId.value}`
+  );
+});
 
 // ============================================
 // CLEANUP (cancel pending operations)
 // ============================================
 
 watch(searchQuery, async (newQuery) => {
-  const controller = new AbortController()
-  
+  const controller = new AbortController();
+
   // Register cleanup for when watcher re-runs or component unmounts
   onWatcherCleanup(() => {
-    controller.abort()  // Cancel the fetch if query changes again
-  })
-  
+    controller.abort(); // Cancel the fetch if query changes again
+  });
+
   try {
     const response = await fetch(`/api/search?q=${newQuery}`, {
-      signal: controller.signal
-    })
-    results.value = await response.json()
+      signal: controller.signal,
+    });
+    results.value = await response.json();
   } catch (e) {
-    if ((e as Error).name !== 'AbortError') {
-      console.error('Search failed:', e)
+    if ((e as Error).name !== "AbortError") {
+      console.error("Search failed:", e);
     }
   }
-})
+});
 </script>
 
 <template>
   <div class="p-6 space-y-4">
     <div>
       <label class="block mb-1">Search:</label>
-      <input 
-        v-model="searchQuery" 
+      <input
+        v-model="searchQuery"
         class="border p-2 rounded w-full"
         placeholder="Type to search..."
       />
     </div>
-    
+
     <div>
       <label class="block mb-1">User ID:</label>
-      <input 
-        v-model.number="userId" 
-        type="number"
-        class="border p-2 rounded"
-      />
+      <input v-model.number="userId" type="number" class="border p-2 rounded" />
     </div>
-    
+
     <div>
       <label class="block mb-1">Theme:</label>
       <select v-model="settings.theme" class="border p-2 rounded">
@@ -434,7 +428,7 @@ watch(searchQuery, async (newQuery) => {
         <option value="dark">Dark</option>
       </select>
     </div>
-    
+
     <div v-if="isLoading" class="text-gray-500">Loading...</div>
     <ul v-else>
       <li v-for="result in results" :key="result">{{ result }}</li>
@@ -444,6 +438,7 @@ watch(searchQuery, async (newQuery) => {
 ```
 
 **Key Points:**
+
 - `watch(source, callback, options)` — explicit source declaration
 - `watchEffect(callback)` — auto-tracks dependencies
 - Use getter function `() => state.prop` for reactive object properties
@@ -456,9 +451,11 @@ watch(searchQuery, async (newQuery) => {
 ## 7. Comprehension Check
 
 1. **Why can't you use `computed()` to make an API call when a search query changes?**
+
    - Think about what computed properties are designed for.
 
 2. **What's the difference between `watch(myRef, cb)` and `watch(() => state.prop, cb)`?**
+
    - Consider how Vue tracks dependencies.
 
 3. **True or False: `watchEffect()` requires you to specify which reactive values to watch.**
@@ -466,4 +463,4 @@ watch(searchQuery, async (newQuery) => {
 
 ---
 
-*Reply 'next' for Lesson 5.2 (Practice).*
+_Reply 'next' for Lesson 5.2 (Practice)._

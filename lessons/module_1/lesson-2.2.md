@@ -2,14 +2,15 @@
 
 ## 1. Lesson Metadata
 
-| Field | Value |
-|:--- |:--- |
-| **Lesson Number** | 2.2 of 25 (Part 2 of 2) |
-| **Topic** | Reactive Primitives with `ref()` / Реактивные примитивы с ref() |
-| **Continues From** | Lesson 2.1 |
-| **Duration** | 30-35 minutes |
+| Field              | Value                                                           |
+| :----------------- | :-------------------------------------------------------------- |
+| **Lesson Number**  | 2.2 of 25 (Part 2 of 2)                                         |
+| **Topic**          | Reactive Primitives with `ref()` / Реактивные примитивы с ref() |
+| **Continues From** | Lesson 2.1                                                      |
+| **Duration**       | 30-35 minutes                                                   |
 
 **Learning Objectives — Part 2 (Practice):**
+
 1. **Apply:** Create interactive components with multiple reactive refs that respond to user input
 2. **Analyze:** Debug common ref-related issues and identify the correct usage of `.value`
 
@@ -28,11 +29,12 @@
 ## 3. The Variable Frame & Complexity Scale
 
 **Basic Form:**
+
 ```vue
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref } from "vue";
 
-const count = ref(0)
+const count = ref(0);
 </script>
 
 <template>
@@ -41,77 +43,79 @@ const count = ref(0)
 ```
 
 **With Options (Explicit Typing):**
+
 ```vue
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref } from "vue";
 
-const count = ref<number>(0)
-const message = ref<string>('')
-const isLoading = ref<boolean>(false)
+const count = ref<number>(0);
+const message = ref<string>("");
+const isLoading = ref<boolean>(false);
 
 const increment = (): void => {
-  count.value++
-}
+  count.value++;
+};
 
 const updateMessage = (newMsg: string): void => {
-  message.value = newMsg
-  isLoading.value = true
-}
+  message.value = newMsg;
+  isLoading.value = true;
+};
 </script>
 
 <template>
   <div>
     <p>Count: {{ count }}</p>
-    <p>Message: {{ message || 'No message' }}</p>
-    <p>Loading: {{ isLoading ? 'Yes' : 'No' }}</p>
+    <p>Message: {{ message || "No message" }}</p>
+    <p>Loading: {{ isLoading ? "Yes" : "No" }}</p>
     <button @click="increment">+1</button>
   </div>
 </template>
 ```
 
 **Advanced Form (Multiple Refs with Validation):**
+
 ```vue
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref } from "vue";
 
-const username = ref<string>('')
-const password = ref<string>('')
-const errorMessage = ref<string>('')
-const isSubmitting = ref<boolean>(false)
-const attempts = ref<number>(0)
+const username = ref<string>("");
+const password = ref<string>("");
+const errorMessage = ref<string>("");
+const isSubmitting = ref<boolean>(false);
+const attempts = ref<number>(0);
 
-const MAX_ATTEMPTS = 3
+const MAX_ATTEMPTS = 3;
 
 const validateForm = (): boolean => {
   if (username.value.length < 3) {
-    errorMessage.value = 'Username must be at least 3 characters'
-    return false
+    errorMessage.value = "Username must be at least 3 characters";
+    return false;
   }
   if (password.value.length < 8) {
-    errorMessage.value = 'Password must be at least 8 characters'
-    return false
+    errorMessage.value = "Password must be at least 8 characters";
+    return false;
   }
-  errorMessage.value = ''
-  return true
-}
+  errorMessage.value = "";
+  return true;
+};
 
 const submitForm = async (): Promise<void> => {
   if (attempts.value >= MAX_ATTEMPTS) {
-    errorMessage.value = 'Too many attempts. Please try again later.'
-    return
+    errorMessage.value = "Too many attempts. Please try again later.";
+    return;
   }
-  
+
   if (!validateForm()) {
-    attempts.value++
-    return
+    attempts.value++;
+    return;
   }
-  
-  isSubmitting.value = true
+
+  isSubmitting.value = true;
   // Simulate API call
-  await new Promise(resolve => setTimeout(resolve, 1000))
-  isSubmitting.value = false
-  attempts.value = 0
-}
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+  isSubmitting.value = false;
+  attempts.value = 0;
+};
 </script>
 
 <template>
@@ -121,7 +125,7 @@ const submitForm = async (): Promise<void> => {
     <p v-if="errorMessage" class="text-red-500">{{ errorMessage }}</p>
     <p>Attempts: {{ attempts }} / {{ MAX_ATTEMPTS }}</p>
     <button :disabled="isSubmitting">
-      {{ isSubmitting ? 'Submitting...' : 'Submit' }}
+      {{ isSubmitting ? "Submitting..." : "Submit" }}
     </button>
   </form>
 </template>
@@ -137,11 +141,10 @@ Create a simple toggle that switches between ON and OFF.
 
 ```vue
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref } from "vue";
 
 // TODO: Create a ref called 'isOn' initialized to false
 // TODO: Create a function 'toggle' that flips the boolean value
-
 </script>
 
 <template>
@@ -153,20 +156,21 @@ import { ref } from 'vue'
 ```
 
 **Solution:**
+
 ```vue
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref } from "vue";
 
-const isOn = ref<boolean>(false)
+const isOn = ref<boolean>(false);
 
 const toggle = (): void => {
-  isOn.value = !isOn.value
-}
+  isOn.value = !isOn.value;
+};
 </script>
 
 <template>
   <div>
-    <p>Status: {{ isOn ? 'ON' : 'OFF' }}</p>
+    <p>Status: {{ isOn ? "ON" : "OFF" }}</p>
     <button @click="toggle">Toggle</button>
   </div>
 </template>
@@ -180,13 +184,12 @@ Create an input that shows how many characters have been typed.
 
 ```vue
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref } from "vue";
 
 // TODO: Create a ref called 'name' initialized to an empty string
 // TODO: Create a ref called 'charCount' initialized to 0
-// TODO: Create a function 'updateName' that takes a string, updates 'name', 
+// TODO: Create a function 'updateName' that takes a string, updates 'name',
 //       and sets 'charCount' to the string's length
-
 </script>
 
 <template>
@@ -199,23 +202,24 @@ import { ref } from 'vue'
 ```
 
 **Solution:**
+
 ```vue
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref } from "vue";
 
-const name = ref<string>('')
-const charCount = ref<number>(0)
+const name = ref<string>("");
+const charCount = ref<number>(0);
 
 const updateName = (value: string): void => {
-  name.value = value
-  charCount.value = value.length
-}
+  name.value = value;
+  charCount.value = value.length;
+};
 </script>
 
 <template>
   <div>
-    <input 
-      :value="name" 
+    <input
+      :value="name"
       @input="updateName(($event.target as HTMLInputElement).value)"
       placeholder="Enter your name"
     />
@@ -232,16 +236,15 @@ Create a like button that increments but has a maximum limit.
 
 ```vue
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref } from "vue";
 
-const MAX_LIKES = 10
+const MAX_LIKES = 10;
 
 // TODO: Create 'likes' ref starting at 0
 // TODO: Create 'hasReachedLimit' ref starting at false
 // TODO: Create 'addLike' function that:
 //       - Increments likes if under limit
 //       - Sets hasReachedLimit to true when limit is reached
-
 </script>
 
 <template>
@@ -255,34 +258,31 @@ const MAX_LIKES = 10
 ```
 
 **Solution:**
+
 ```vue
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref } from "vue";
 
-const MAX_LIKES = 10
+const MAX_LIKES = 10;
 
-const likes = ref<number>(0)
-const hasReachedLimit = ref<boolean>(false)
+const likes = ref<number>(0);
+const hasReachedLimit = ref<boolean>(false);
 
 const addLike = (): void => {
   if (likes.value < MAX_LIKES) {
-    likes.value++
+    likes.value++;
     if (likes.value === MAX_LIKES) {
-      hasReachedLimit.value = true
+      hasReachedLimit.value = true;
     }
   }
-}
+};
 </script>
 
 <template>
   <div>
     <p>Likes: {{ likes }} / {{ MAX_LIKES }}</p>
-    <button @click="addLike" :disabled="hasReachedLimit">
-      ❤️ Like
-    </button>
-    <p v-if="hasReachedLimit" class="text-orange-500">
-      Maximum likes reached!
-    </p>
+    <button @click="addLike" :disabled="hasReachedLimit">❤️ Like</button>
+    <p v-if="hasReachedLimit" class="text-orange-500">Maximum likes reached!</p>
   </div>
 </template>
 ```
@@ -295,10 +295,10 @@ Create a quantity selector that stays within bounds.
 
 ```vue
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref } from "vue";
 
-const MIN = 1
-const MAX = 99
+const MIN = 1;
+const MAX = 99;
 
 // TODO: Create 'quantity' ref starting at 1
 // TODO: Create 'errorMsg' ref as empty string
@@ -306,7 +306,6 @@ const MAX = 99
 //       - Sets errorMsg if value is out of bounds
 //       - Clamps value to min/max range
 //       - Updates quantity
-
 </script>
 
 <template>
@@ -320,32 +319,33 @@ const MAX = 99
 ```
 
 **Solution:**
+
 ```vue
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref } from "vue";
 
-const MIN = 1
-const MAX = 99
+const MIN = 1;
+const MAX = 99;
 
-const quantity = ref<number>(1)
-const errorMsg = ref<string>('')
+const quantity = ref<number>(1);
+const errorMsg = ref<string>("");
 
 const setQuantity = (value: number): void => {
   if (value < MIN) {
-    errorMsg.value = `Minimum quantity is ${MIN}`
-    quantity.value = MIN
+    errorMsg.value = `Minimum quantity is ${MIN}`;
+    quantity.value = MIN;
   } else if (value > MAX) {
-    errorMsg.value = `Maximum quantity is ${MAX}`
-    quantity.value = MAX
+    errorMsg.value = `Maximum quantity is ${MAX}`;
+    quantity.value = MAX;
   } else {
-    errorMsg.value = ''
-    quantity.value = value
+    errorMsg.value = "";
+    quantity.value = value;
   }
-  
+
   setTimeout(() => {
-    errorMsg.value = ''
-  }, 2000)
-}
+    errorMsg.value = "";
+  }, 2000);
+};
 </script>
 
 <template>
@@ -362,29 +362,31 @@ const setQuantity = (value: number): void => {
 
 ## 5. Common Pitfalls & Anti-Patterns
 
-| ❌ Common Mistake | ✅ Correct Approach | Why It Matters |
-|:--- |:--- |:--- |
-| `count.value` in template | `{{ count }}` | Templates auto-unwrap refs; using `.value` is redundant and confusing |
-| `count = 5` in script | `count.value = 5` | You can't reassign the ref itself; you must modify `.value` |
-| Forgetting `import { ref } from 'vue'` | Always import ref | Without import, `ref` is undefined — common error for beginners |
-| `let count = ref(0)` then `count = ref(1)` | Keep `const`, modify `.value` | Reassigning the ref breaks reactivity; the template loses track |
-| Comparing refs directly: `if (count === 5)` | `if (count.value === 5)` | Comparing ref object to primitive always returns false |
+| ❌ Common Mistake                           | ✅ Correct Approach           | Why It Matters                                                        |
+| :------------------------------------------ | :---------------------------- | :-------------------------------------------------------------------- |
+| `count.value` in template                   | `{{ count }}`                 | Templates auto-unwrap refs; using `.value` is redundant and confusing |
+| `count = 5` in script                       | `count.value = 5`             | You can't reassign the ref itself; you must modify `.value`           |
+| Forgetting `import { ref } from 'vue'`      | Always import ref             | Without import, `ref` is undefined — common error for beginners       |
+| `let count = ref(0)` then `count = ref(1)`  | Keep `const`, modify `.value` | Reassigning the ref breaks reactivity; the template loses track       |
+| Comparing refs directly: `if (count === 5)` | `if (count.value === 5)`      | Comparing ref object to primitive always returns false                |
 
 **Common Error Messages:**
 
 ```typescript
 // Error: Cannot assign to 'count' because it is a constant
-const count = ref(0)
-count = ref(5)  // ❌ Wrong!
-count.value = 5 // ✅ Correct!
+const count = ref(0);
+count = ref(5); // ❌ Wrong!
+count.value = 5; // ✅ Correct!
 
 // Error: ref is not defined
-const x = ref(0)  // ❌ Forgot import!
+const x = ref(0); // ❌ Forgot import!
 // Fix: import { ref } from 'vue'
 
 // Subtle bug: condition never true
-if (count === 0) { }  // ❌ count is an object, not a number
-if (count.value === 0) { }  // ✅ Compare the value
+if (count === 0) {
+} // ❌ count is an object, not a number
+if (count.value === 0) {
+} // ✅ Compare the value
 ```
 
 ---
@@ -392,6 +394,7 @@ if (count.value === 0) { }  // ✅ Compare the value
 ## 6. Mini-Project: Step Counter Dashboard
 
 **File Structure:**
+
 ```
 src/
 ├── components/
@@ -401,6 +404,7 @@ src/
 ```
 
 **components/StepCounter.vue:**
+
 ```vue
 <script setup lang="ts">
 // ============================================
@@ -408,20 +412,20 @@ src/
 // A fitness-style step counter with goal tracking
 // ============================================
 
-import { ref } from 'vue'
+import { ref } from "vue";
 
 // ============================================
 // REACTIVE STATE
 // All values that can change and affect the UI
 // ============================================
 
-const steps = ref<number>(0)
-const dailyGoal = ref<number>(10000)
-const userName = ref<string>('Fitness Fan')
+const steps = ref<number>(0);
+const dailyGoal = ref<number>(10000);
+const userName = ref<string>("Fitness Fan");
 
-const lastUpdated = ref<string>('')
-const isEditing = ref<boolean>(false)
-const tempGoal = ref<string>('')
+const lastUpdated = ref<string>("");
+const isEditing = ref<boolean>(false);
+const tempGoal = ref<string>("");
 
 // ============================================
 // HELPER FUNCTIONS
@@ -429,27 +433,27 @@ const tempGoal = ref<string>('')
 // ============================================
 
 const formatNumber = (num: number): string => {
-  return num.toLocaleString()
-}
+  return num.toLocaleString();
+};
 
 const getTimeString = (): string => {
-  return new Date().toLocaleTimeString()
-}
+  return new Date().toLocaleTimeString();
+};
 
 const calculateProgress = (): number => {
-  const progress = (steps.value / dailyGoal.value) * 100
-  return Math.min(progress, 100)
-}
+  const progress = (steps.value / dailyGoal.value) * 100;
+  return Math.min(progress, 100);
+};
 
 const getMotivationalMessage = (): string => {
-  const progress = calculateProgress()
-  if (progress === 0) return "Let's get moving! 🚶"
-  if (progress < 25) return 'Good start! Keep going! 💪'
-  if (progress < 50) return "You're making progress! 🌟"
-  if (progress < 75) return 'More than halfway there! 🔥'
-  if (progress < 100) return 'Almost at your goal! 🏃'
-  return 'Goal achieved! Amazing! 🎉'
-}
+  const progress = calculateProgress();
+  if (progress === 0) return "Let's get moving! 🚶";
+  if (progress < 25) return "Good start! Keep going! 💪";
+  if (progress < 50) return "You're making progress! 🌟";
+  if (progress < 75) return "More than halfway there! 🔥";
+  if (progress < 100) return "Almost at your goal! 🏃";
+  return "Goal achieved! Amazing! 🎉";
+};
 
 // ============================================
 // ACTIONS
@@ -457,42 +461,41 @@ const getMotivationalMessage = (): string => {
 // ============================================
 
 const addSteps = (amount: number): void => {
-  steps.value += amount
-  lastUpdated.value = getTimeString()
-}
+  steps.value += amount;
+  lastUpdated.value = getTimeString();
+};
 
 const removeSteps = (amount: number): void => {
-  steps.value = Math.max(0, steps.value - amount)
-  lastUpdated.value = getTimeString()
-}
+  steps.value = Math.max(0, steps.value - amount);
+  lastUpdated.value = getTimeString();
+};
 
 const resetSteps = (): void => {
-  steps.value = 0
-  lastUpdated.value = ''
-}
+  steps.value = 0;
+  lastUpdated.value = "";
+};
 
 const startEditingGoal = (): void => {
-  tempGoal.value = dailyGoal.value.toString()
-  isEditing.value = true
-}
+  tempGoal.value = dailyGoal.value.toString();
+  isEditing.value = true;
+};
 
 const saveGoal = (): void => {
-  const newGoal = parseInt(tempGoal.value, 10)
+  const newGoal = parseInt(tempGoal.value, 10);
   if (!isNaN(newGoal) && newGoal > 0) {
-    dailyGoal.value = newGoal
+    dailyGoal.value = newGoal;
   }
-  isEditing.value = false
-}
+  isEditing.value = false;
+};
 
 const cancelEditingGoal = (): void => {
-  isEditing.value = false
-  tempGoal.value = ''
-}
+  isEditing.value = false;
+  tempGoal.value = "";
+};
 </script>
 
 <template>
   <div class="max-w-md mx-auto bg-white rounded-2xl shadow-xl overflow-hidden">
-    
     <div class="bg-gradient-to-r from-blue-500 to-purple-600 p-6 text-white">
       <h2 class="text-xl font-bold">{{ userName }}'s Steps</h2>
       <p class="text-blue-100 text-sm">Daily Progress Tracker</p>
@@ -503,10 +506,10 @@ const cancelEditingGoal = (): void => {
         <p class="text-5xl font-bold text-gray-800">
           {{ formatNumber(steps) }}
         </p>
-        
+
         <div class="flex items-center justify-center gap-2 mt-2">
           <span class="text-gray-500">Goal:</span>
-          
+
           <template v-if="isEditing">
             <input
               v-model="tempGoal"
@@ -519,9 +522,9 @@ const cancelEditingGoal = (): void => {
             <button @click="saveGoal" class="text-green-500">✓</button>
             <button @click="cancelEditingGoal" class="text-red-500">✗</button>
           </template>
-          
+
           <template v-else>
-            <span 
+            <span
               class="text-blue-600 font-medium cursor-pointer hover:underline"
               @click="startEditingGoal"
             >
@@ -599,9 +602,10 @@ const cancelEditingGoal = (): void => {
 ```
 
 **App.vue:**
+
 ```vue
 <script setup lang="ts">
-import StepCounter from './components/StepCounter.vue'
+import StepCounter from "./components/StepCounter.vue";
 </script>
 
 <template>
@@ -631,13 +635,13 @@ import StepCounter from './components/StepCounter.vue'
 
 ```vue
 <script setup lang="ts">
-import { _____ } from 'vue'
+import { _____ } from "vue";
 
-const score = _____(0)
+const score = _____(0);
 
 const addPoint = (): void => {
-  score._____ += 1
-}
+  score._____ += 1;
+};
 </script>
 
 <template>
@@ -653,6 +657,7 @@ const addPoint = (): void => {
 ### Level 2 (Apply): Small Coding Tasks
 
 **Exercise 2.1:** Create a `VolumeSlider.vue` component with:
+
 - A `volume` ref (number, 0-100)
 - A `isMuted` ref (boolean)
 - Functions to increase/decrease volume by 10
@@ -660,6 +665,7 @@ const addPoint = (): void => {
 - Display volume level and mute status
 
 **Exercise 2.2:** Create a `Timer.vue` component with:
+
 - A `seconds` ref starting at 0
 - An `isRunning` ref (boolean)
 - Start, pause, and reset functions
@@ -672,13 +678,13 @@ const addPoint = (): void => {
 
 ```vue
 <script setup lang="ts">
-const count = ref(0)
-const doubled = ref(0)
+const count = ref(0);
+const doubled = ref(0);
 
 const increment = () => {
-  count = count + 1
-  doubled.value = count * 2
-}
+  count = count + 1;
+  doubled.value = count * 2;
+};
 </script>
 
 <template>
@@ -689,23 +695,25 @@ const increment = () => {
 ```
 
 **Bugs to find:**
+
 1. Missing import for `ref`
 2. Trying to reassign `count` instead of `count.value`
 3. Using `count` instead of `count.value` in calculation
 4. Using `.value` in template (not needed)
 
 **Fixed Version:**
+
 ```vue
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref } from "vue";
 
-const count = ref(0)
-const doubled = ref(0)
+const count = ref(0);
+const doubled = ref(0);
 
 const increment = (): void => {
-  count.value = count.value + 1
-  doubled.value = count.value * 2
-}
+  count.value = count.value + 1;
+  doubled.value = count.value * 2;
+};
 </script>
 
 <template>
@@ -720,91 +728,97 @@ const increment = (): void => {
 ## Self-Check Solutions
 
 **Exercise 2.1 Solution:**
+
 ```vue
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref } from "vue";
 
-const volume = ref<number>(50)
-const isMuted = ref<boolean>(false)
+const volume = ref<number>(50);
+const isMuted = ref<boolean>(false);
 
 const increaseVolume = (): void => {
   if (volume.value < 100) {
-    volume.value = Math.min(100, volume.value + 10)
+    volume.value = Math.min(100, volume.value + 10);
   }
-}
+};
 
 const decreaseVolume = (): void => {
   if (volume.value > 0) {
-    volume.value = Math.max(0, volume.value - 10)
+    volume.value = Math.max(0, volume.value - 10);
   }
-}
+};
 
 const toggleMute = (): void => {
-  isMuted.value = !isMuted.value
-}
+  isMuted.value = !isMuted.value;
+};
 
 const getVolumeIcon = (): string => {
-  if (isMuted.value || volume.value === 0) return '🔇'
-  if (volume.value < 30) return '🔈'
-  if (volume.value < 70) return '🔉'
-  return '🔊'
-}
+  if (isMuted.value || volume.value === 0) return "🔇";
+  if (volume.value < 30) return "🔈";
+  if (volume.value < 70) return "🔉";
+  return "🔊";
+};
 </script>
 
 <template>
   <div class="p-4">
-    <p class="text-2xl mb-4">{{ getVolumeIcon() }} {{ isMuted ? 'Muted' : volume + '%' }}</p>
+    <p class="text-2xl mb-4">
+      {{ getVolumeIcon() }} {{ isMuted ? "Muted" : volume + "%" }}
+    </p>
     <div class="flex gap-2">
       <button @click="decreaseVolume" :disabled="volume === 0">-10</button>
       <button @click="increaseVolume" :disabled="volume === 100">+10</button>
-      <button @click="toggleMute">{{ isMuted ? 'Unmute' : 'Mute' }}</button>
+      <button @click="toggleMute">{{ isMuted ? "Unmute" : "Mute" }}</button>
     </div>
   </div>
 </template>
 ```
 
 **Exercise 2.2 Solution:**
+
 ```vue
 <script setup lang="ts">
-import { ref, onUnmounted } from 'vue'
+import { ref, onUnmounted } from "vue";
 
-const seconds = ref<number>(0)
-const isRunning = ref<boolean>(false)
-let intervalId: number | null = null
+const seconds = ref<number>(0);
+const isRunning = ref<boolean>(false);
+let intervalId: number | null = null;
 
 const formatTime = (totalSeconds: number): string => {
-  const mins = Math.floor(totalSeconds / 60)
-  const secs = totalSeconds % 60
-  return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`
-}
+  const mins = Math.floor(totalSeconds / 60);
+  const secs = totalSeconds % 60;
+  return `${mins.toString().padStart(2, "0")}:${secs
+    .toString()
+    .padStart(2, "0")}`;
+};
 
 const start = (): void => {
   if (!isRunning.value) {
-    isRunning.value = true
+    isRunning.value = true;
     intervalId = window.setInterval(() => {
-      seconds.value++
-    }, 1000)
+      seconds.value++;
+    }, 1000);
   }
-}
+};
 
 const pause = (): void => {
   if (intervalId !== null) {
-    clearInterval(intervalId)
-    intervalId = null
+    clearInterval(intervalId);
+    intervalId = null;
   }
-  isRunning.value = false
-}
+  isRunning.value = false;
+};
 
 const reset = (): void => {
-  pause()
-  seconds.value = 0
-}
+  pause();
+  seconds.value = 0;
+};
 
 onUnmounted(() => {
   if (intervalId !== null) {
-    clearInterval(intervalId)
+    clearInterval(intervalId);
   }
-})
+});
 </script>
 
 <template>
@@ -821,4 +835,4 @@ onUnmounted(() => {
 
 ---
 
-*Reply 'next' for Lesson 3.1 (Theory).*
+_Reply 'next' for Lesson 3.1 (Theory)._

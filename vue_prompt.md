@@ -72,40 +72,29 @@ ALL lessons are split into two focused micro-lessons:
 - For **Part 2 (Practice):** End with "Reply 'next' for Lesson X+1.1 (Theory)."
 - Follow the appropriate `MICRO-LESSON TEMPLATE` for each part.
 
-### 1.7. Visual Guidelines (Mermaid.js)
+### 1.7. Visual Guidelines (Logic Tables)
 
-**ALL diagrams MUST use Mermaid.js syntax** for graphical rendering. Use the following diagram types:
-
-| Use Case                             | Mermaid Diagram Type     | Syntax Start                        |
-| :----------------------------------- | :----------------------- | :---------------------------------- |
-| Data flow, component relationships   | Flowchart                | `graph TD` or `graph LR`            |
-| State changes (loading, error, etc.) | State Diagram            | `stateDiagram-v2`                   |
-| User interactions, API calls         | Sequence Diagram         | `sequenceDiagram`                   |
-| Decision trees, conditional logic    | Flowchart with decisions | `graph TD` with `{Decision?}` nodes |
-| Proportions, distributions           | Pie Chart                | `pie title Name`                    |
-| Hierarchies, dependency trees        | Flowchart                | `graph TD` with subgraphs           |
+**DO NOT use Mermaid.js**. Instead, use **Markdown Tables** or **Structured Text** to represent logic, data flows, and state transitions. This ensures maximum compatibility and readability.
 
 **Example (Reactivity Flow):**
 
-```mermaid
-graph LR
-    A[User Input] --> B[ref/reactive]
-    B --> C{Vue Reactivity}
-    C --> D[DOM Update]
-    D --> E[User Sees Change]
-```
+| Step | Action             | Result                                                    |
+| :--- | :----------------- | :-------------------------------------------------------- |
+| 1    | **User Input**     | User interacts with the UI (e.g., types in an input)      |
+| 2    | **State Update**   | The `ref` or `reactive` variable is updated in the script |
+| 3    | **Vue Reactivity** | Vue detects the change and schedules an update            |
+| 4    | **DOM Update**     | Vue updates the specific part of the HTML template        |
+| 5    | **UI Sync**        | User sees the updated value on the screen                 |
 
 **Example (Component Lifecycle):**
 
-```mermaid
-sequenceDiagram
-    participant Vue
-    participant Component
-    Vue->>Component: onMounted()
-    Component->>API: fetch data
-    API-->>Component: response
-    Component->>Vue: update reactive state
-```
+| Participant   | Action        | Description                                          |
+| :------------ | :------------ | :--------------------------------------------------- |
+| **Vue**       | `onMounted()` | Vue calls the lifecycle hook when component is ready |
+| **Component** | `fetch()`     | Component initiates an API request                   |
+| **API**       | Response      | API returns the requested data                       |
+| **Component** | Update State  | Component saves data to reactive variables           |
+| **Vue**       | Re-render     | Vue updates the UI with the new data                 |
 
 ---
 
@@ -139,16 +128,16 @@ _Foundation skills every Vue developer needs._
 | 2 | **Live Character Counter** | A social media composer shows remaining characters and warns when near limit | `ref()`, `watch()`, derived state with `computed()` |
 | 3 | **Temperature Converter Widget** | A weather app converts between Celsius/Fahrenheit in real-time as user types | `reactive()`, two-way computed, `watch()` for validation |
 
-```mermaid
-graph LR
-    subgraph Progression
-        D1[Dummy: Click Counter] --> D2[Dummy: Message Reverser]
-        D2 --> D3[Dummy: Number Doubler]
-        D3 --> R1[Real: Counter Dashboard]
-        R1 --> R2[Real: Character Counter]
-        R2 --> R3[Real: Temp Converter]
-    end
-```
+**Module Progression:**
+
+| Level | Project Type | Project Name      | Transition                       |
+| :---- | :----------- | :---------------- | :------------------------------- |
+| 1     | Dummy        | Click Counter     | Foundation of `ref` and events   |
+| 2     | Dummy        | Message Reverser  | Introduction to `computed`       |
+| 3     | Dummy        | Number Doubler    | Introduction to `watch`          |
+| 4     | Real-World   | Counter Dashboard | Combined mechanics in a UI       |
+| 5     | Real-World   | Character Counter | Practical application of `watch` |
+| 6     | Real-World   | Temp Converter    | Complex reactive objects         |
 
 ---
 
@@ -175,13 +164,12 @@ _Parent-child data flow patterns._
 | 2 | **Star Rating Component** | An e-commerce product page has a reusable rating component that emits the selected score | Props for initial value, emit on selection, visual feedback |
 | 3 | **Notification Banner System** | A dashboard shows dismissible alerts; child banners notify parent when closed | Props for message/type, emit on dismiss, dynamic prop binding |
 
-```mermaid
-graph TD
-    subgraph Data Flow
-        Parent -->|props| Child
-        Child -->|emit| Parent
-    end
-```
+**Data Flow Pattern:**
+
+| Direction           | Mechanism | Description                                   |
+| :------------------ | :-------- | :-------------------------------------------- |
+| **Parent to Child** | `props`   | Passing data down to the child component      |
+| **Child to Parent** | `emit`    | Sending events and data back up to the parent |
 
 ---
 
@@ -207,12 +195,14 @@ _Styling fundamentals with utility-first CSS._
 | 2 | **Pricing Table** | A SaaS landing page shows 3-tier pricing with highlighted "popular" option | Grid layout, DaisyUI badges, conditional styling |
 | 3 | **Dark Mode Toggle** | A portfolio site switches between light/dark themes with smooth transition | CSS variables, Tailwind dark mode, DaisyUI themes |
 
-```mermaid
-graph LR
-    A[Tailwind Utilities] --> B[DaisyUI Components]
-    B --> C[Custom Theming]
-    C --> D[Responsive Design]
-```
+**Styling Workflow:**
+
+| Step | Focus                  | Outcome                               |
+| :--- | :--------------------- | :------------------------------------ |
+| 1    | **Tailwind Utilities** | Rapid styling with atomic classes     |
+| 2    | **DaisyUI Components** | Pre-built accessible UI components    |
+| 3    | **Custom Theming**     | Brand-specific colors and styles      |
+| 4    | **Responsive Design**  | Layouts that adapt to any screen size |
 
 ---
 
@@ -239,14 +229,13 @@ _Controlling what appears in the DOM._
 | 2 | **Multi-Step Wizard** | A checkout flow shows different form steps based on current progress | `v-if`/`v-else-if` chains, step navigation, progress indicator |
 | 3 | **Filterable Product Grid** | An online store displays products with category filters and "no results" state | `v-for` with computed filter, `v-show` for performance, `v-if` for empty state |
 
-```mermaid
-graph TD
-    A{Condition?}
-    A -->|true| B[Render Element]
-    A -->|false| C[Skip/Remove Element]
-    D[Array] --> E[v-for]
-    E --> F[Rendered Items]
-```
+**Rendering Logic:**
+
+| Scenario        | Directive | Action                                             |
+| :-------------- | :-------- | :------------------------------------------------- |
+| **Conditional** | `v-if`    | Add/Remove element from DOM based on truthiness    |
+| **Toggle**      | `v-show`  | Toggle CSS `display: none` for performance         |
+| **List**        | `v-for`   | Iterate over an array and render multiple elements |
 
 ---
 
@@ -276,17 +265,14 @@ _Handling user input and creating interactive components._
 | 2 | **Interactive Survey Builder** | A feedback tool lets users add/remove questions with different input types | `v-model` on dynamic forms, event handling, slots for question types |
 | 3 | **Rich Modal Dialog** | A confirmation dialog with customizable header, body, and footer via slots | Named slots, slot props, event handling for confirm/cancel |
 
-```mermaid
-graph LR
-    subgraph v-model Flow
-        Input -->|update:modelValue| Parent
-        Parent -->|:modelValue| Input
-    end
-    subgraph Slots
-        Parent2[Parent] -->|slot content| Child
-        Child -->|renders| Output
-    end
-```
+**Interaction Patterns:**
+
+| Pattern     | Participant      | Action                                       |
+| :---------- | :--------------- | :------------------------------------------- |
+| **v-model** | Child Component  | Emits `update:modelValue` to parent          |
+| **v-model** | Parent Component | Updates local state and passes back via prop |
+| **Slots**   | Parent Component | Provides HTML/Component content to child     |
+| **Slots**   | Child Component  | Renders provided content in `<slot />`       |
 
 ---
 
@@ -312,14 +298,13 @@ _Extracting and sharing logic across components._
 | 2 | **useLocalStorage Composable** | A notes app persists user preferences and drafts to localStorage with reactive sync | Composable with `watch()`, SSR safety, generic typing |
 | 3 | **useCounter Composable** | A dashboard has multiple counters with shared increment/decrement/reset logic | Simple composable, return reactive refs, expose actions |
 
-```mermaid
-graph TD
-    A[Composable Function] --> B[Returns Reactive State]
-    A --> C[Returns Methods]
-    D[Component 1] --> A
-    E[Component 2] --> A
-    F[Component 3] --> A
-```
+**Composable Architecture:**
+
+| Role            | Description                                                   |
+| :-------------- | :------------------------------------------------------------ |
+| **Composable**  | A function that encapsulates reactive state and methods       |
+| **Component**   | Imports and uses the composable to gain functionality         |
+| **Reusability** | Multiple components can use the same composable independently |
 
 ---
 
@@ -347,15 +332,14 @@ _Communicating with backend services and handling async data._
 | 2 | **Weather Dashboard** | A weather app fetches current conditions and 5-day forecast from OpenWeatherMap API | `useFetch` composable, query parameters, data transformation |
 | 3 | **CRUD API Client** | A task manager performs Create, Read, Update, Delete operations against a REST API | `useFetch` with methods (GET/POST/PUT/DELETE), optimistic updates, error handling |
 
-```mermaid
-stateDiagram-v2
-    [*] --> Idle
-    Idle --> Loading: fetch()
-    Loading --> Success: data received
-    Loading --> Error: request failed
-    Success --> Idle: refetch
-    Error --> Idle: retry
-```
+**Fetch State Transitions:**
+
+| From State        | Trigger          | To State    |
+| :---------------- | :--------------- | :---------- |
+| **Idle**          | `fetch()` called | **Loading** |
+| **Loading**       | Data received    | **Success** |
+| **Loading**       | Request fails    | **Error**   |
+| **Success/Error** | Retry/Refetch    | **Loading** |
 
 ---
 
@@ -383,14 +367,14 @@ _Client-side routing and navigation guards._
 | 2 | **User Profile Dashboard** | A social app has nested routes for profile overview, settings, and activity | Dynamic routes (`:userId`), nested routes, route params |
 | 3 | **Protected Admin Panel** | An admin area requires authentication; unauthorized users are redirected to login | Navigation guards, meta fields, redirect handling, auth state check |
 
-```mermaid
-graph LR
-    A[URL Change] --> B{Router}
-    B --> C[Match Route]
-    C --> D{Guard Check}
-    D -->|Pass| E[Render Component]
-    D -->|Fail| F[Redirect]
-```
+**Routing Process:**
+
+| Step | Action          | Description                                    |
+| :--- | :-------------- | :--------------------------------------------- |
+| 1    | **URL Change**  | User clicks a link or enters a new URL         |
+| 2    | **Match Route** | Router finds the corresponding component       |
+| 3    | **Guard Check** | Router checks `beforeEach` guards (e.g., Auth) |
+| 4    | **Render**      | Component is mounted in `<RouterView />`       |
 
 ---
 
@@ -418,17 +402,14 @@ _Centralized application state with Pinia._
 | 2 | **User Authentication Store** | A SaaS app manages login state, tokens, and user profile globally | Pinia with getters (isLoggedIn), actions (login/logout), persistence |
 | 3 | **Multi-Store Dashboard** | An analytics app has separate stores for users, products, and orders that interact | Multiple Pinia stores, store composition, cross-store actions |
 
-```mermaid
-graph TD
-    subgraph Pinia Store
-        State --> Getters
-        State --> Actions
-        Actions --> State
-    end
-    C1[Component 1] --> State
-    C2[Component 2] --> State
-    C3[Component 3] --> Actions
-```
+**Pinia Store Structure:**
+
+| Element        | Role      | Description                                 |
+| :------------- | :-------- | :------------------------------------------ |
+| **State**      | Data      | The reactive data source (the "truth")      |
+| **Getters**    | Derived   | Computed values based on state              |
+| **Actions**    | Methods   | Functions that modify state or handle logic |
+| **Components** | Consumers | Access state/getters and trigger actions    |
 
 ---
 
@@ -458,18 +439,14 @@ _Performance, testing, and production deployment._
 | 2 | **Lazy-Loaded Dashboard Widgets** | An analytics dashboard loads heavy chart components only when visible | Async components, `<Suspense>`, loading states, `defineAsyncComponent` |
 | 3 | **Tested Component Library** | A UI library with Button, Input, and Modal components with full test coverage | Vitest + Vue Test Utils, component testing, snapshot tests, CI integration |
 
-```mermaid
-graph LR
-    subgraph Build Pipeline
-        Dev[Dev Server] --> Build[npm run build]
-        Build --> Dist[dist/ folder]
-        Dist --> Deploy[Vercel/Netlify]
-    end
-    subgraph Testing
-        Test[Vitest] --> Unit[Unit Tests]
-        Test --> Snap[Snapshot Tests]
-    end
-```
+**Build & Test Pipeline:**
+
+| Phase           | Tool            | Purpose                                  |
+| :-------------- | :-------------- | :--------------------------------------- |
+| **Development** | Vite Dev Server | Fast HMR and local development           |
+| **Testing**     | Vitest          | Unit and component testing               |
+| **Build**       | `npm run build` | Bundling and optimization for production |
+| **Deployment**  | Vercel/Netlify  | Hosting the static `dist` folder         |
 
 ---
 
@@ -484,11 +461,10 @@ graph LR
 | **Total Checkpoint Projects** |    **64**    |
 | Total Estimated Time          | ~32-36 hours |
 
-```mermaid
-pie title Project Distribution
-    "Dummy Projects" : 34
-    "Real-World Projects" : 30
-```
+**Project Distribution:**
+
+- **Dummy Projects:** 34 (Practice core mechanics)
+- **Real-World Projects:** 30 (Apply to realistic scenarios)
 
 ---
 
@@ -521,7 +497,15 @@ _(Est. Time: 30-35 minutes)_
 
 #### 2. JS/TS Toolkit (Refresher)
 
-_Briefly explain 1-2 specific JavaScript/TypeScript concepts that are essential for this lesson (e.g., Destructuring, Arrow Functions, Spread Operator)._
+_Briefly explain 1-2 specific JavaScript/TypeScript concepts that are essential for this lesson. Provide a clear explanation and a short code example._
+
+**Example Structure:**
+
+- **Concept Name:** Brief explanation of what it is and why it's used.
+  ```typescript
+  // Short, clear code example
+  const example = () => { ... };
+  ```
 
 #### 3. Real-World Scenario & Context
 
@@ -532,26 +516,12 @@ _Briefly explain 1-2 specific JavaScript/TypeScript concepts that are essential 
 
 - **How It Actually Works:** Explain the underlying mechanism in detail. What is Vue doing "under the hood"?
 
-  - _Visual Instruction:_ Include a **Mermaid.js flowchart** diagram. Use `graph TD` or `graph LR` for data/reactivity flows.
+  - _Visual Instruction:_ Include a **Markdown Table** to illustrate the flow or process step-by-step.
 
-  ```mermaid
-  graph TD
-      A[User Action] --> B[ref/reactive]
-      B --> C{Vue Reactivity System}
-      C --> D[DOM Update]
-  ```
-
-- **Mental Model:** Provide a clear analogy or metaphor (e.g., "`ref()` is like a 'smart box' that notifies Vue when its contents change").
-  - _Visual Instruction:_ Use a **Mermaid.js diagram** to illustrate the mental model with labeled nodes.
+- **Mental Model:** Provide a clear analogy or metaphor.
+  - _Visual Instruction:_ Use a **Markdown Table** or **Structured List** to map the analogy to technical concepts.
 - **In Other Contexts:** Compare with React hooks, Angular, or vanilla JavaScript equivalents.
-- **When to Use / When NOT to Use:** Provide decision guidance using a **Mermaid.js decision flowchart**:
-
-  ```mermaid
-  graph TD
-      Q{Is data a primitive?}
-      Q -->|Yes| R[Use ref]
-      Q -->|No| S[Use reactive]
-  ```
+- **When to Use / When NOT to Use:** Provide decision guidance using a **Markdown Table** (Scenario vs. Recommendation).
 
 #### 5. New Terminology
 
@@ -563,18 +533,7 @@ _A list defining 3-4 key terms introduced in this lesson. E.g., "Reactivity", "S
   1.  **State:** What data do we need? (Define `ref`/`reactive` variables)
   2.  **Actions:** How does the data change? (Define functions/handlers)
   3.  **View:** How is it displayed? (Define template structure)
-  - _Visual Instruction:_ Use a **Mermaid.js sequence diagram** or **flowchart**:
-
-```mermaid
-sequenceDiagram
-    participant User
-    participant Component
-    participant Store
-    User->>Component: Triggers Action
-    Component->>Store: Updates State
-    Store-->>Component: Reactivity Notifies
-    Component-->>User: UI Updates
-```
+  - _Visual Instruction:_ Use a **Markdown Table** to show the sequence of events or the relationship between State, Actions, and View.
 
 #### 7. Initial Pattern Introduction
 
