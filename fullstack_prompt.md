@@ -36,6 +36,8 @@ You are an expert full-stack curriculum designer. Your task is to generate a **p
 - **Authentication:** JWT tokens stored in localStorage/Pinia
 - **File Handling:** Multipart form uploads, file streaming
 - **Testing (E2E):** Playwright with Python (pytest-playwright)
+- **CI/CD:** GitHub Actions (Linting, Testing, Containerization)
+- **Deployment:** Docker, Docker Compose, Cloud (Render/Railway/Vercel)
 - **Development:** Docker Compose for local orchestration
 
 ### 1.2. Core Philosophy: Project-Driven Learning
@@ -223,6 +225,13 @@ _Each project introduces new concepts. Lessons are organized around building the
 | :----- | :----------------------------------------------- | :--------------------- | :---------------------------------------- |
 | US-3.1 | As a developer, I want to test the greeting flow | Playwright test script | Test verifies greeting text matches input |
 
+**Epic 4: Containerization**
+
+| ID     | User Story                                        | Features           | Acceptance Criteria                         |
+| :----- | :------------------------------------------------ | :----------------- | :------------------------------------------ |
+| US-4.1 | As a developer, I want to containerize my app     | Dockerfiles        | Images build successfully for both services |
+| US-4.2 | As a developer, I want to run with Docker Compose | docker-compose.yml | `docker-compose up` starts whole stack      |
+
 **Feature Checklist:**
 
 - [ ] F1.1: Vite project with TypeScript template
@@ -234,22 +243,26 @@ _Each project introduces new concepts. Lessons are organized around building the
 - [ ] F1.7: Environment variables for API URL
 - [ ] F1.8: Health check endpoint
 - [ ] F1.9: Playwright test for greeting message
+- [ ] F1.10: Dockerfile for Frontend & Backend
+- [ ] F1.11: Docker Compose configuration
 
 #### 📚 New Concepts Introduced
 
-| Lesson | Topic                       | Frontend (Vue)           | Backend (FastAPI)            | Testing (Playwright/Python)              |
-| :----: | :-------------------------- | :----------------------- | :--------------------------- | :--------------------------------------- |
-|   1    | Project Structure & Setup   | Vite project creation    | FastAPI project structure    | —                                        |
-|   2    | Your First API Call         | `fetch()` in `onMounted` | JSON response                | —                                        |
-|   3    | CORS & Development Workflow | —                        | CORSMiddleware configuration | —                                        |
-|   4    | Environment Variables       | `.env` files             | Pydantic Settings            | —                                        |
-|   5    | E2E Testing Foundation      | —                        | —                            | `pytest-playwright` setup, `page.goto()` |
+| Lesson | Topic                       | Frontend (Vue)           | Backend (FastAPI)            | Testing (Playwright/Python)              | Deployment (Docker/CI-CD)         |
+| :----: | :-------------------------- | :----------------------- | :--------------------------- | :--------------------------------------- | :-------------------------------- |
+|   1    | Project Structure & Setup   | Vite project creation    | FastAPI project structure    | —                                        | —                                 |
+|   2    | Your First API Call         | `fetch()` in `onMounted` | JSON response                | —                                        | —                                 |
+|   3    | CORS & Development Workflow | —                        | CORSMiddleware configuration | —                                        | —                                 |
+|   4    | Environment Variables       | `.env` files             | Pydantic Settings            | —                                        | —                                 |
+|   5    | E2E Testing Foundation      | —                        | —                            | `pytest-playwright` setup, `page.goto()` | —                                 |
+|   6    | Containerization Basics     | Dockerizing Vue (Nginx)  | Dockerizing FastAPI          | —                                        | Dockerfile, Docker Compose basics |
 
 #### ✅ Project Deliverable
 
 - Vue app displays "Hello, [Name]!" fetched from FastAPI
 - Name is passed as a query parameter
 - Playwright test validates the full-stack flow
+- Project runs inside Docker containers via Docker Compose
 - Both frontend and backend run locally with proper CORS
 
 ---
@@ -353,6 +366,13 @@ _Each project introduces new concepts. Lessons are organized around building the
 | :----- | :---------------------------------------- | :--------------------- | :----------------------------------- |
 | US-5.1 | As a developer, I want to test CRUD flows | Playwright test script | Test verifies create, update, delete |
 
+**Epic 6: Continuous Integration**
+
+| ID     | User Story                                             | Features                 | Acceptance Criteria                    |
+| :----- | :----------------------------------------------------- | :----------------------- | :------------------------------------- |
+| US-6.1 | As a developer, I want automated linting on every push | GitHub Actions (Linters) | Workflow fails if linting issues exist |
+| US-6.2 | As a developer, I want automated tests on every push   | GitHub Actions (Pytest)  | Workflow fails if tests do not pass    |
+
 **Feature Checklist:**
 
 - [ ] F2.1: Task Pydantic schema with validation
@@ -367,18 +387,20 @@ _Each project introduces new concepts. Lessons are organized around building the
 - [ ] F2.10: Pinia store for task state
 - [ ] F2.11: Optimistic UI updates
 - [ ] F2.12: Playwright tests for full CRUD flow
+- [ ] F2.13: GitHub Actions workflow for YAML lint/test
 
 #### 📚 New Concepts Introduced
 
-| Lesson | Topic                       | Frontend (Vue)                     | Backend (FastAPI)         | Testing (Playwright/Python)               |
-| :----: | :-------------------------- | :--------------------------------- | :------------------------ | :---------------------------------------- |
-|   6    | Reactive State with `ref()` | Declaring reactive variables       | —                         | —                                         |
-|   7    | Path & Query Parameters     | Fetching single items by ID        | Path params, Query params | —                                         |
-|   8    | Request Bodies & Pydantic   | Sending JSON POST requests         | Pydantic models           | —                                         |
-|   9    | List Rendering with `v-for` | Rendering arrays, `:key` attribute | Returning lists           | —                                         |
-|   10   | Event Handling & Forms      | `@click`, `v-model`                | POST/PUT endpoints        | —                                         |
-|   11   | Completing CRUD             | DELETE requests                    | DELETE endpoint           | —                                         |
-|   12   | Testing CRUD Operations     | —                                  | —                         | `page.fill()`, `page.click()`, assertions |
+| Lesson | Topic                       | Frontend (Vue)                     | Backend (FastAPI)         | Testing (Playwright/Python)               | Deployment (Docker/CI-CD)         |
+| :----: | :-------------------------- | :--------------------------------- | :------------------------ | :---------------------------------------- | :-------------------------------- |
+|   7    | Reactive State with `ref()` | Declaring reactive variables       | —                         | —                                         | —                                 |
+|   8    | Path & Query Parameters     | Fetching single items by ID        | Path params, Query params | —                                         | —                                 |
+|   9    | Request Bodies & Pydantic   | Sending JSON POST requests         | Pydantic models           | —                                         | —                                 |
+|   10   | List Rendering with `v-for` | Rendering arrays, `:key` attribute | Returning lists           | —                                         | —                                 |
+|   11   | Event Handling & Forms      | `@click`, `v-model`                | POST/PUT endpoints        | —                                         | —                                 |
+|   12   | Completing CRUD             | DELETE requests                    | DELETE endpoint           | —                                         | —                                 |
+|   13   | Testing CRUD Operations     | —                                  | —                         | `page.fill()`, `page.click()`, assertions | —                                 |
+|   14   | GitHub Actions CI           | —                                  | —                         | —                                         | YAML syntax, lint/test automation |
 
 #### ✅ Project Deliverable
 
@@ -386,6 +408,7 @@ _Each project introduces new concepts. Lessons are organized around building the
 - Tasks persist via API (in-memory list for now)
 - Full CRUD: Add, view, edit, delete tasks
 - Playwright tests for all CRUD operations
+- GitHub Actions CI pipeline running tests and linting
 
 ---
 
@@ -492,6 +515,13 @@ _Each project introduces new concepts. Lessons are organized around building the
 | :----- | :---------------------------------------------- | :--------------------- | :--------------------------------- |
 | US-4.1 | As a developer, I want to test data persistence | Playwright test script | Verifies data survives page reload |
 
+**Epic 5: Staging Deployment**
+
+| ID     | User Story                                              | Features                  | Acceptance Criteria                         |
+| :----- | :------------------------------------------------------ | :------------------------ | :------------------------------------------ |
+| US-5.1 | As a developer, I want my app deployed to a staging URL | Render/Railway Setup      | Prototype accessible via public link        |
+| US-5.2 | As a developer, I want a managed database               | Cloud Database (Postgres) | App connects to managed DB instead of local |
+
 **Feature Checklist:**
 
 - [ ] F3.1: SQLAlchemy 2.0 async engine setup
@@ -504,18 +534,20 @@ _Each project introduces new concepts. Lessons are organized around building the
 - [ ] F3.8: Error message display
 - [ ] F3.9: Timestamps auto-update
 - [ ] F3.10: Playwright tests for persistent notes
+- [ ] F3.11: Render/Railway blueprint configuration
 
 #### 📚 New Concepts Introduced
 
-| Lesson | Topic                            | Frontend (Vue)            | Backend (FastAPI)            | Testing (Playwright/Python)                   |
-| :----: | :------------------------------- | :------------------------ | :--------------------------- | :-------------------------------------------- |
-|   13   | Database Setup                   | —                         | SQLAlchemy 2.0 setup         | —                                             |
-|   14   | Models & Migrations              | —                         | SQLAlchemy models, Alembic   | —                                             |
-|   15   | Database CRUD Operations         | —                         | Create, Read with `select()` | —                                             |
-|   16   | Update & Delete with Database    | —                         | Update/Delete queries        | —                                             |
-|   17   | Loading & Error States           | `isLoading`, `error` refs | —                            | —                                             |
-|   18   | Building a `useFetch` Composable | Reusable fetching logic   | —                            | —                                             |
-|   19   | Testing Persistence              | —                         | —                            | Testing data lifecycle, DB state verification |
+| Lesson | Topic                            | Frontend (Vue)            | Backend (FastAPI)            | Testing (Playwright/Python)                   | Deployment (Docker/CI-CD)                     |
+| :----: | :------------------------------- | :------------------------ | :--------------------------- | :-------------------------------------------- | :-------------------------------------------- |
+|   15   | Database Setup                   | —                         | SQLAlchemy 2.0 setup         | —                                             | —                                             |
+|   16   | Models & Migrations              | —                         | SQLAlchemy models, Alembic   | —                                             | —                                             |
+|   17   | Database CRUD Operations         | —                         | Create, Read with `select()` | —                                             | —                                             |
+|   18   | Update & Delete with Database    | —                         | Update/Delete queries        | —                                             | —                                             |
+|   19   | Loading & Error States           | `isLoading`, `error` refs | —                            | —                                             | —                                             |
+|   20   | Building a `useFetch` Composable | Reusable fetching logic   | —                            | —                                             | —                                             |
+|   21   | Testing Persistence              | —                         | —                            | Testing data lifecycle, DB state verification | —                                             |
+|   22   | Cloud Staging Deployment         | —                         | Database as a Service        | —                                             | Cloud deployment (Render), Managed PostgreSQL |
 
 #### ✅ Project Deliverable
 
@@ -523,6 +555,7 @@ _Each project introduces new concepts. Lessons are organized around building the
 - Vue app shows loading spinners and error messages
 - Reusable `useFetch` composable for API calls
 - Playwright tests verifying end-to-end persistence
+- Application deployed and running on a staging cloud platform
 
 ---
 
@@ -598,6 +631,13 @@ _Each project introduces new concepts. Lessons are organized around building the
 | :----- | :-------------------------------------------------- | :--------------------- | :---------------------------------------------- |
 | US-4.1 | As a developer, I want to test filtering and search | Playwright test script | Verifies results change based on filters/search |
 
+**Epic 5: Continuous Deployment**
+
+| ID     | User Story                                              | Features               | Acceptance Criteria                                |
+| :----- | :------------------------------------------------------ | :--------------------- | :------------------------------------------------- |
+| US-5.1 | As a developer, I want my app to redeploy on every push | GitHub Actions (CD)    | Successful merge to main triggers production build |
+| US-5.2 | As a developer, I want to use production Docker images  | Docker Registry (GHCR) | Images are built and stored in cloud registry      |
+
 **Feature Checklist:**
 
 - [ ] F4.1: Category model with color field
@@ -609,16 +649,18 @@ _Each project introduces new concepts. Lessons are organized around building the
 - [ ] F4.7: Debounced search input
 - [ ] F4.8: Category filter tabs/buttons
 - [ ] F4.9: Playwright tests for search and filtering
+- [ ] F4.10: GitHub Actions CD workflow
 
 #### 📚 New Concepts Introduced
 
-| Lesson | Topic                             | Frontend (Vue)                  | Backend (FastAPI)                  | Testing (Playwright/Python)                       |
-| :----: | :-------------------------------- | :------------------------------ | :--------------------------------- | :------------------------------------------------ |
-|   20   | One-to-Many Relationships         | —                               | Foreign keys, relationship loading | —                                                 |
-|   21   | Computed Properties for Filtering | `computed()` for filtered lists | Query parameters                   | —                                                 |
-|   22   | Search Implementation             | Debounced search input          | LIKE queries                       | —                                                 |
-|   23   | Nested Pydantic Models            | Displaying nested data          | Nested response schemas            | —                                                 |
-|   24   | Testing Search & Filtering        | —                               | —                                  | `page.get_by_placeholder()`, filtering assertions |
+| Lesson | Topic                             | Frontend (Vue)                  | Backend (FastAPI)                  | Testing (Playwright/Python)                       | Deployment (Docker/CI-CD)                        |
+| :----: | :-------------------------------- | :------------------------------ | :--------------------------------- | :------------------------------------------------ | :----------------------------------------------- |
+|   23   | One-to-Many Relationships         | —                               | Foreign keys, relationship loading | —                                                 | —                                                |
+|   24   | Computed Properties for Filtering | `computed()` for filtered lists | Query parameters                   | —                                                 | —                                                |
+|   25   | Search Implementation             | Debounced search input          | LIKE queries                       | —                                                 | —                                                |
+|   26   | Nested Pydantic Models            | Displaying nested data          | Nested response schemas            | —                                                 | —                                                |
+|   27   | Testing Search & Filtering        | —                               | —                                  | `page.get_by_placeholder()`, filtering assertions | —                                                |
+|   28   | Continuous Deployment (CD)        | —                               | —                                  | —                                                 | GitHub Actions CD, Docker Build & Push, Webhooks |
 
 #### ✅ Project Deliverable
 
@@ -627,6 +669,7 @@ _Each project introduces new concepts. Lessons are organized around building the
 - Search notes by title/content
 - Proper nested JSON responses
 - Playwright tests for search and category filtering
+- Automated CD pipeline that builds Docker images and deploys to cloud
 
 ---
 
@@ -728,6 +771,13 @@ _Each project introduces new concepts. Lessons are organized around building the
 | US-3.2 | As a visitor, I am redirected to login           | Router guards   | Protected routes redirect      |
 | US-3.3 | As a user, I want my identity sent with requests | Auth header     | Bearer token in API calls      |
 
+**Epic 6: Security & Secrets**
+
+| ID     | User Story                                           | Features               | Acceptance Criteria                          |
+| :----- | :--------------------------------------------------- | :--------------------- | :------------------------------------------- |
+| US-6.1 | As a developer, I want to store JWT secrets securely | GitHub Secrets         | Secrets not committed to git, loaded via ENV |
+| US-6.2 | As a developer, I want to inject production secrets  | CI/CD Secret Injection | App runs with production keys in cloud       |
+
 **Epic 5: E2E Testing**
 
 | ID     | User Story                                          | Features               | Acceptance Criteria                            |
@@ -750,20 +800,22 @@ _Each project introduces new concepts. Lessons are organized around building the
 - [ ] F5.12: Token refresh logic
 - [ ] F5.13: Logout with state clear
 - [ ] F5.14: Playwright tests for Auth (Login/Logout/Register)
+- [ ] F5.15: Production secrets configuration in Cloud UI
 
 #### 📚 New Concepts Introduced
 
-| Lesson | Topic                  | Frontend (Vue)    | Backend (FastAPI)    | Testing (Playwright/Python)             |
-| :----: | :--------------------- | :---------------- | :------------------- | :-------------------------------------- |
-|   25   | Password Hashing       | —                 | Passlib, bcrypt      | —                                       |
-|   26   | User Registration      | Registration form | User creation        | —                                       |
-|   27   | JWT Token Basics       | Storage options   | python-jose          | —                                       |
-|   28   | Login Flow             | Token storage     | OAuth2PasswordBearer | —                                       |
-|   29   | Auth State with Pinia  | Auth store        | —                    | —                                       |
-|   30   | Protected API Routes   | Auth headers      | Dependency Injection | —                                       |
-|   31   | Vue Router Guards      | `beforeEach`      | —                    | —                                       |
-|   32   | Token Refresh & Logout | Refresh flow      | Token invalidation   | —                                       |
-|   33   | Testing Authentication | —                 | —                    | Testing login flow, redirects, and 401s |
+| Lesson | Topic                  | Frontend (Vue)    | Backend (FastAPI)    | Testing (Playwright/Python)             | Deployment (Docker/CI-CD)    |
+| :----: | :--------------------- | :---------------- | :------------------- | :-------------------------------------- | :--------------------------- |
+|   25   | Password Hashing       | —                 | Passlib, bcrypt      | —                                       | —                            |
+|   26   | User Registration      | Registration form | User creation        | —                                       | —                            |
+|   27   | JWT Token Basics       | Storage options   | python-jose          | —                                       | —                            |
+|   28   | Login Flow             | Token storage     | OAuth2PasswordBearer | —                                       | —                            |
+|   29   | Auth State with Pinia  | Auth store        | —                    | —                                       | —                            |
+|   30   | Protected API Routes   | Auth headers      | Dependency Injection | —                                       | —                            |
+|   31   | Vue Router Guards      | `beforeEach`      | —                    | —                                       | —                            |
+|   32   | Token Refresh & Logout | Refresh flow      | Token invalidation   | —                                       | —                            |
+|   33   | Testing Authentication | —                 | —                    | Testing login flow, redirects, and 401s | —                            |
+|   34   | Secrets Management     | —                 | —                    | —                                       | GitHub Secrets, ENV security |
 
 #### ✅ Project Deliverable
 
@@ -857,6 +909,13 @@ _Each project introduces new concepts. Lessons are organized around building the
 | US-2.3 | As an author, I want to delete my posts   | Delete button, DELETE endpoint | Post removed from database |
 | US-2.4 | As a visitor, I cannot edit others' posts | Ownership validation           | 403 for non-owners         |
 
+**Epic 5: Automated Migrations**
+
+| ID     | User Story                                            | Features             | Acceptance Criteria                                 |
+| :----- | :---------------------------------------------------- | :------------------- | :-------------------------------------------------- |
+| US-5.1 | As a developer, I want my DB schema updated on deploy | CI/CD Alembic runner | Deployment runs `alembic upgrade head` before start |
+| US-5.2 | As a developer, I want to check for migration drift   | CI Check (Alembic)   | Workflow fails if local schema ≠ model definitions  |
+
 **Epic 4: E2E Testing**
 
 | ID     | User Story                                   | Features               | Acceptance Criteria                          |
@@ -875,18 +934,20 @@ _Each project introduces new concepts. Lessons are organized around building the
 - [ ] F6.8: Page navigation component
 - [ ] F6.9: Optional auth dependency for public routes
 - [ ] F6.10: Playwright tests for Blog CRUD and Pagination
+- [ ] F6.11: Production deployment script with migrations
 
 #### 📚 New Concepts Introduced
 
-| Lesson | Topic                     | Frontend (Vue)          | Backend (FastAPI)     | Testing (Playwright/Python)                      |
-| :----: | :------------------------ | :---------------------- | :-------------------- | :----------------------------------------------- |
-|   34   | Multi-Page Routing        | Vue Router setup        | —                     | —                                                |
-|   35   | Dynamic Routes            | `useRoute()` params     | —                     | —                                                |
-|   36   | Post CRUD with Ownership  | Author-only controls    | Owner validation      | —                                                |
-|   37   | Rich Text Content         | Markdown rendering      | Text storage          | —                                                |
-|   38   | Public vs. Private Routes | Mixed auth requirements | Optional dependencies | —                                                |
-|   39   | Pagination                | Page controls           | LIMIT/OFFSET          | —                                                |
-|   40   | Testing Complex Routing   | —                       | —                     | Testing navigation, dynamic URLs, and pagination |
+| Lesson | Topic                     | Frontend (Vue)          | Backend (FastAPI)     | Testing (Playwright/Python)                      | Deployment (Docker/CI-CD)             |
+| :----: | :------------------------ | :---------------------- | :-------------------- | :----------------------------------------------- | :------------------------------------ |
+|   34   | Multi-Page Routing        | Vue Router setup        | —                     | —                                                | —                                     |
+|   35   | Dynamic Routes            | `useRoute()` params     | —                     | —                                                | —                                     |
+|   36   | Post CRUD with Ownership  | Author-only controls    | Owner validation      | —                                                | —                                     |
+|   37   | Rich Text Content         | Markdown rendering      | Text storage          | —                                                | —                                     |
+|   38   | Public vs. Private Routes | Mixed auth requirements | Optional dependencies | —                                                | —                                     |
+|   39   | Pagination                | Page controls           | LIMIT/OFFSET          | —                                                | —                                     |
+|   40   | Testing Complex Routing   | —                       | —                     | Testing navigation, dynamic URLs, and pagination | —                                     |
+|   41   | Automated Migrations (CI) | —                       | —                     | —                                                | Alembic in CI/CD, migration rollbacks |
 
 #### ✅ Project Deliverable
 
@@ -979,6 +1040,13 @@ _Each project introduces new concepts. Lessons are organized around building the
 | :----- | :------------------------------------------- | :--------------------- | :---------------------------------------------------- |
 | US-4.1 | As a developer, I want to test image uploads | Playwright test script | Verifies file selection and successful upload display |
 
+**Epic 5: Asset Optimization & CDN**
+
+| ID     | User Story                                       | Features                  | Acceptance Criteria                           |
+| :----- | :----------------------------------------------- | :------------------------ | :-------------------------------------------- |
+| US-5.1 | As a developer, I want my images to load quickly | Nginx Caching / CDN Setup | Assets are cached by edge servers             |
+| US-5.2 | As a developer, I want to optimize image sizes   | Image compression (Opt)   | Uploaded images are resized/optimized for web |
+
 **Feature Checklist:**
 
 - [ ] F7.1: Image SQLAlchemy model
@@ -991,18 +1059,20 @@ _Each project introduces new concepts. Lessons are organized around building the
 - [ ] F7.8: Server-side MIME type validation
 - [ ] F7.9: Image grid with DaisyUI cards
 - [ ] F7.10: Playwright tests for Image Upload and Gallery
+- [ ] F7.11: Nginx configuration for static assets
 
 #### 📚 New Concepts Introduced
 
-| Lesson | Topic                 | Frontend (Vue)      | Backend (FastAPI)    | Testing (Playwright/Python)           |
-| :----: | :-------------------- | :------------------ | :------------------- | :------------------------------------ |
-|   41   | File Input Handling   | `input type="file"` | —                    | —                                     |
-|   42   | Multipart Form Upload | `FormData`, axios   | `UploadFile`         | —                                     |
-|   43   | File Storage          | —                   | Disk storage         | —                                     |
-|   44   | Serving Static Files  | Displaying images   | `StaticFiles`        | —                                     |
-|   45   | Upload Progress       | Progress bars       | —                    | —                                     |
-|   46   | File Validation       | Client-side checks  | Server-side security | —                                     |
-|   47   | Testing File Uploads  | —                   | —                    | `set_input_files()`, media assertions |
+| Lesson | Topic                 | Frontend (Vue)      | Backend (FastAPI)    | Testing (Playwright/Python)           | Deployment (Docker/CI-CD) |
+| :----: | :-------------------- | :------------------ | :------------------- | :------------------------------------ | :------------------------ |
+|   41   | File Input Handling   | `input type="file"` | —                    | —                                     | —                         |
+|   42   | Multipart Form Upload | `FormData`, axios   | `UploadFile`         | —                                     | —                         |
+|   43   | File Storage          | —                   | Disk storage         | —                                     | —                         |
+|   44   | Serving Static Files  | Displaying images   | `StaticFiles`        | —                                     | —                         |
+|   45   | Upload Progress       | Progress bars       | —                    | —                                     | —                         |
+|   46   | File Validation       | Client-side checks  | Server-side security | —                                     | —                         |
+|   47   | Testing File Uploads  | —                   | —                    | `set_input_files()`, media assertions | —                         |
+|   48   | Asset Optimization    | —                   | —                    | —                                     | Nginx Caching, CDN basics |
 
 #### ✅ Project Deliverable
 
@@ -1082,6 +1152,13 @@ _Each project introduces new concepts. Lessons are organized around building the
 | :----- | :-------------------------------------------------------- | :--------------------- | :------------------------------------------------------ |
 | US-4.1 | As a developer, I want to test advanced catalog filtering | Playwright test script | Verifies facets (price, tags) correctly filter products |
 
+**Epic 5: Multi-Container CI/CD**
+
+| ID     | User Story                                          | Features                  | Acceptance Criteria                             |
+| :----- | :-------------------------------------------------- | :------------------------ | :---------------------------------------------- |
+| US-5.1 | As a developer, I want to test with a real DB in CI | GitHub Actions + Postgres | CI runs tests against a real Postgres container |
+| US-5.2 | As a developer, I want to build multi-arch images   | Buildx / QEMU             | Docker images work on ARM and x86               |
+
 **Feature Checklist:**
 
 - [ ] F8.1: Product, Category, and Tag SQLAlchemy models
@@ -1094,18 +1171,20 @@ _Each project introduces new concepts. Lessons are organized around building the
 - [ ] F8.8: "Reset Filters" functionality
 - [ ] F8.9: Sorting implementation (SQL `order_by`)
 - [ ] F8.10: Playwright tests for faceted search and filtering
+- [ ] F8.11: GitHub Actions with Services (Postgres)
 
 #### 📚 New Concepts Introduced
 
-| Lesson | Topic                      | Frontend (Vue)       | Backend (FastAPI)      | Testing (Playwright/Python)                       |
-| :----: | :------------------------- | :------------------- | :--------------------- | :------------------------------------------------ |
-|   48   | Complex Data Schemas       | Product variants     | Pydantic validators    | —                                                 |
-|   49   | Many-to-Many Relationships | Tagging products     | Association tables     | —                                                 |
-|   50   | Advanced Filtering UI      | Multi-select filters | Complex query building | —                                                 |
-|   51   | Sorting & Ordering         | URL sync             | SQL `order_by`         | —                                                 |
-|   52   | Product Image Uploads      | Multiple images      | Multi-file handling    | —                                                 |
-|   53   | Responsive Product Grid    | Grid layouts         | —                      | —                                                 |
-|   54   | Faceted Search Testing     | —                    | —                      | Testing multi-filter state, sliders, and URL sync |
+| Lesson | Topic                      | Frontend (Vue)       | Backend (FastAPI)      | Testing (Playwright/Python)                       | Deployment (Docker/CI-CD)            |
+| :----: | :------------------------- | :------------------- | :--------------------- | :------------------------------------------------ | :----------------------------------- |
+|   49   | Complex Data Schemas       | Product variants     | Pydantic validators    | —                                                 | —                                    |
+|   50   | Many-to-Many Relationships | Tagging products     | Association tables     | —                                                 | —                                    |
+|   51   | Advanced Filtering UI      | Multi-select filters | Complex query building | —                                                 | —                                    |
+|   52   | Sorting & Ordering         | URL sync             | SQL `order_by`         | —                                                 | —                                    |
+|   53   | Product Image Uploads      | Multiple images      | Multi-file handling    | —                                                 | —                                    |
+|   54   | Responsive Product Grid    | Grid layouts         | —                      | —                                                 | —                                    |
+|   55   | Faceted Search Testing     | —                    | —                      | Testing multi-filter state, sliders, and URL sync | —                                    |
+|   56   | Multi-Container CI         | —                    | —                      | —                                                 | GitHub Actions Services (PostgreSQL) |
 
 #### ✅ Project Deliverable
 
@@ -1195,6 +1274,13 @@ _Each project introduces new concepts. Lessons are organized around building the
 | :----- | :----------------------------------------------- | :--------------------- | :---------------------------------------------------- |
 | US-4.1 | As a developer, I want to test the checkout flow | Playwright test script | Verifies cart-to-order transition and stock reduction |
 
+**Epic 5: Health & Uptime Monitoring**
+
+| ID     | User Story                                       | Features                   | Acceptance Criteria                             |
+| :----- | :----------------------------------------------- | :------------------------- | :---------------------------------------------- |
+| US-5.1 | As a developer, I want to monitor app health     | /api/health with DB check  | Returns 200 only if DB and App are responsive   |
+| US-5.2 | As a developer, I want to be alerted on downtime | Uptime Robot / BetterStack | External service pings health check every 1 min |
+
 **Feature Checklist:**
 
 - [ ] F9.1: Pinia `cartStore` with state/getters/actions
@@ -1207,18 +1293,20 @@ _Each project introduces new concepts. Lessons are organized around building the
 - [ ] F9.8: "My Orders" view with status badges
 - [ ] F9.9: Clear cart after order placement
 - [ ] F9.10: Playwright tests for Cart and Checkout Flow
+- [ ] F9.11: Advanced /api/health with SQLAlchemy connection pool check
 
 #### 📚 New Concepts Introduced
 
-| Lesson | Topic                   | Frontend (Vue)     | Backend (FastAPI)     | Testing (Playwright/Python)                       |
-| :----: | :---------------------- | :----------------- | :-------------------- | :------------------------------------------------ |
-|   55   | Cart State Management   | Pinia cart actions | —                     | —                                                 |
-|   56   | Cart Persistence        | localStorage sync  | —                     | —                                                 |
-|   57   | Order Schema & Creation | Order submission   | Atomic transactions   | —                                                 |
-|   58   | Order History           | User past orders   | User-specific queries | —                                                 |
-|   59   | Cart-to-Order Flow      | Success redirects  | Stock validation      | —                                                 |
-|   60   | Order Status Updates    | Real-time UI feel  | Enum status           | —                                                 |
-|   61   | Testing E-Commerce Flow | —                  | —                     | Testing multi-step checkout and stock persistence |
+| Lesson | Topic                   | Frontend (Vue)     | Backend (FastAPI)     | Testing (Playwright/Python)                       | Deployment (Docker/CI-CD)          |
+| :----: | :---------------------- | :----------------- | :-------------------- | :------------------------------------------------ | :--------------------------------- |
+|   57   | Cart State Management   | Pinia cart actions | —                     | —                                                 | —                                  |
+|   58   | Cart Persistence        | localStorage sync  | —                     | —                                                 | —                                  |
+|   59   | Order Schema & Creation | Order submission   | Atomic transactions   | —                                                 | —                                  |
+|   60   | Order History           | User past orders   | User-specific queries | —                                                 | —                                  |
+|   61   | Cart-to-Order Flow      | Success redirects  | Stock validation      | —                                                 | —                                  |
+|   62   | Order Status Updates    | Real-time UI feel  | Enum status           | —                                                 | —                                  |
+|   63   | Testing E-Commerce Flow | —                  | —                     | Testing multi-step checkout and stock persistence | —                                  |
+|   64   | Application Monitoring  | —                  | —                     | —                                                 | Health Checks, Uptime Alerts, Logs |
 
 #### ✅ Project Deliverable
 
@@ -1305,6 +1393,13 @@ _Each project introduces new concepts. Lessons are organized around building the
 | :----- | :------------------------------------------------- | :--------------------- | :---------------------------------------------------- |
 | US-4.1 | As a developer, I want to test social interactions | Playwright test script | Verifies likes and follows correctly update UI and DB |
 
+**Epic 5: Performance & Error Tracking**
+
+| ID     | User Story                                         | Features                 | Acceptance Criteria                                 |
+| :----- | :------------------------------------------------- | :----------------------- | :-------------------------------------------------- |
+| US-5.1 | As a developer, I want to track client-side errors | Sentry SDK Integration   | Exceptions in Vue components are reported to Sentry |
+| US-5.2 | As a developer, I want to monitor API performance  | Sentry Performance / APM | Slow endpoints are flagged with traces              |
+
 **Feature Checklist:**
 
 - [ ] F10.1: Profile update endpoint with partial validation
@@ -1317,17 +1412,19 @@ _Each project introduces new concepts. Lessons are organized around building the
 - [ ] F10.8: Activity feed generator (FastAPI logic)
 - [ ] F10.9: Skeleton loaders for feed loading
 - [ ] F10.10: Playwright tests for social graph interactions
+- [ ] F10.11: Sentry integration for Frontend/Backend
 
 #### 📚 New Concepts Introduced
 
-| Lesson | Topic                          | Frontend (Vue)         | Backend (FastAPI)             | Testing (Playwright/Python)                   |
-| :----: | :----------------------------- | :--------------------- | :---------------------------- | :-------------------------------------------- |
-|   62   | User Profile Management        | Profile edit form      | Profile update endpoint       | —                                             |
-|   63   | Avatar Uploads                 | Image cropping/preview | Profile image storage         | —                                             |
-|   64   | Favorites/Likes System         | Like toggle UI         | Many-to-many user↔item        | —                                             |
-|   65   | Following/Followers (Optional) | User relationships     | Self-referential many-to-many | —                                             |
-|   66   | Activity Feed                  | Activity feed display  | Aggregated queries            | —                                             |
-|   67   | Testing Social Features        | —                      | —                             | Testing M2M state and real-time count updates |
+| Lesson | Topic                          | Frontend (Vue)         | Backend (FastAPI)             | Testing (Playwright/Python)                   | Deployment (Docker/CI-CD)         |
+| :----: | :----------------------------- | :--------------------- | :---------------------------- | :-------------------------------------------- | :-------------------------------- |
+|   65   | User Profile Management        | Profile edit form      | Profile update endpoint       | —                                             | —                                 |
+|   66   | Avatar Uploads                 | Image cropping/preview | Profile image storage         | —                                             | —                                 |
+|   67   | Favorites/Likes System         | Like toggle UI         | Many-to-many user↔item        | —                                             | —                                 |
+|   68   | Following/Followers (Optional) | User relationships     | Self-referential many-to-many | —                                             | —                                 |
+|   69   | Activity Feed                  | Activity feed display  | Aggregated queries            | —                                             | —                                 |
+|   70   | Testing Social Features        | —                      | —                             | Testing M2M state and real-time count updates | —                                 |
+|   71   | Error & Perf Monitoring        | Sentry Vue SDK         | Sentry FastAPI Middleware     | —                                             | Error Tracking, APM, Sentry setup |
 
 #### ✅ Project Deliverable
 
@@ -1410,6 +1507,13 @@ _Each project introduces new concepts. Lessons are organized around building the
 | :----- | :-------------------------------------------- | :--------------------- | :------------------------------------------------- |
 | US-4.1 | As a developer, I want to test admin security | Playwright test script | Verifies other roles cannot access admin dashboard |
 
+**Epic 5: Audit Logging & Production Security**
+
+| ID     | User Story                                               | Features                 | Acceptance Criteria                               |
+| :----- | :------------------------------------------------------- | :----------------------- | :------------------------------------------------ |
+| US-5.1 | As a developer, I want to track admin actions            | Audit Log Database       | All admin PATCH/DELETE actions are logged         |
+| US-5.2 | As a developer, I want to restrict admin to specific IPs | IP Whitelisting (Theory) | Production Nginx restricts admin dashboard access |
+
 **Feature Checklist:**
 
 - [ ] F11.1: RBAC Dependency Factory in FastAPI
@@ -1422,17 +1526,19 @@ _Each project introduces new concepts. Lessons are organized around building the
 - [ ] F11.8: Audit trail records on data changes
 - [ ] F11.9: "Impersonate User" feature (Optional/Advanced)
 - [ ] F11.10: Playwright tests for RBAC and Admin Security
+- [ ] F11.11: Production audit logging middleware
 
 #### 📚 New Concepts Introduced
 
-| Lesson | Topic                     | Frontend (Vue)           | Backend (FastAPI)         | Testing (Playwright/Python)                    |
-| :----: | :------------------------ | :----------------------- | :------------------------ | :--------------------------------------------- |
-|   68   | Role-Based Access Control | Role-based UI visibility | Roles enum                | —                                              |
-|   69   | Admin Route Protection    | Admin-only routes        | Role dependencies         | —                                              |
-|   70   | Dashboard Analytics       | Stats cards              | Pagination & Aggregation  | —                                              |
-|   71   | User Management           | Admin user list          | User moderation endpoints | —                                              |
-|   72   | Content Moderation        | Moderation workflows     | Audit fields              | —                                              |
-|   73   | Testing RBAC & Security   | —                        | —                         | Testing unauthorized access and role-switching |
+| Lesson | Topic                     | Frontend (Vue)           | Backend (FastAPI)         | Testing (Playwright/Python)                    | Deployment (Docker/CI-CD)            |
+| :----: | :------------------------ | :----------------------- | :------------------------ | :--------------------------------------------- | :----------------------------------- |
+|   72   | Role-Based Access Control | Role-based UI visibility | Roles enum                | —                                              | —                                    |
+|   73   | Admin Route Protection    | Admin-only routes        | Role dependencies         | —                                              | —                                    |
+|   74   | Dashboard Analytics       | Stats cards              | Pagination & Aggregation  | —                                              | —                                    |
+|   75   | User Management           | Admin user list          | User moderation endpoints | —                                              | —                                    |
+|   76   | Content Moderation        | Moderation workflows     | Audit fields              | —                                              | —                                    |
+|   77   | Testing RBAC & Security   | —                        | —                         | Testing unauthorized access and role-switching | —                                    |
+|   78   | Audit Logging (Prod)      | —                        | Audit Trail Middleware    | —                                              | Production Security, IP Whitelisting |
 
 #### ✅ Project Deliverable
 
@@ -1533,6 +1639,13 @@ _Each project introduces new concepts. Lessons are organized around building the
 | :----- | :---------------------------------------------------------------- | :--------------------- | :----------------------------------------------------------------------- |
 | US-4.1 | As a developer, I want to test the full file management lifecycle | Playwright test script | Verifies create folder, upload file, move to folder, share, and download |
 
+**Epic 5: Scalability & Zero-Downtime Deployment**
+
+| ID     | User Story                                        | Features               | Acceptance Criteria                              |
+| :----- | :------------------------------------------------ | :--------------------- | :----------------------------------------------- |
+| US-5.1 | As a developer, I want to handle high traffic     | Load Balancing (Nginx) | Traffic is distributed across multiple instances |
+| US-5.2 | As a developer, I want no downtime during updates | Blue-Green / Rolling   | App remains accessible during deployment         |
+
 **Feature Checklist:**
 
 - [ ] F12.1: Recursive SQLAlchemy model for folders/files
@@ -1545,18 +1658,20 @@ _Each project introduces new concepts. Lessons are organized around building the
 - [ ] F12.8: Temporary Signed URL generator for sharing
 - [ ] F12.9: File type icons based on extension
 - [ ] F12.10: Playwright tests for Capstone file management
+- [ ] F12.11: Docker Compose with Horizontal Scaling
 
 #### 📚 New Concepts Introduced
 
-| Lesson | Topic                 | Frontend (Vue)   | Backend (FastAPI)   | Testing (Playwright/Python)                    |
-| :----: | :-------------------- | :--------------- | :------------------ | :--------------------------------------------- |
-|   74   | Folder Structure      | Tree navigation  | Hierarchical models | —                                              |
-|   75   | Multi-File Uploads    | Queue management | Batch handling      | —                                              |
-|   76   | File Downloads        | Download logic   | `StreamingResponse` | —                                              |
-|   77   | Download with Auth    | Secure links     | Protected streaming | —                                              |
-|   78   | Drag-and-Drop UI      | DnD API          | —                   | —                                              |
-|   79   | Sharing & Permissions | Share links      | Tokenized access    | —                                              |
-|   80   | Capstone E2E Testing  | —                | —                   | Testing complex recursively-nested hierarchies |
+| Lesson | Topic                 | Frontend (Vue)   | Backend (FastAPI)   | Testing (Playwright/Python) | Deployment (Docker/CI-CD)                |
+| :----: | :-------------------- | :--------------- | :------------------ | :-------------------------- | :--------------------------------------- |
+|   79   | Folder Structure      | Tree navigation  | Hierarchical models | —                           | —                                        |
+|   80   | Multi-File Uploads    | Queue management | Batch handling      | —                           | —                                        |
+|   81   | File Downloads        | Download logic   | `StreamingResponse` | —                           | —                                        |
+|   82   | Download with Auth    | Secure links     | Protected streaming | —                           | —                                        |
+|   83   | Drag-and-Drop UI      | DnD API          | —                   | —                           | —                                        |
+|   84   | Sharing & Permissions | Share links      | Tokenized access    | —                           | —                                        |
+|   85   | Capstone E2E Testing  | —                | —                   | Testing complex hierarchies | —                                        |
+|   86   | Zero-Downtime Deploys | —                | —                   | —                           | Load Balancing, Rolling Updates, Scaling |
 
 #### ✅ Project Deliverable
 
@@ -1566,17 +1681,18 @@ _Each project introduces new concepts. Lessons are organized around building the
 - Generate shareable links
 - Move files between folders
 - Playwright tests for full file management lifecycle
+- Horizontal scaling configuration with Nginx load balancer
 
 ---
 
 ## 📊 Curriculum Summary
 
-| Metric                            |       Count       |
-| :-------------------------------- | :---------------: |
-| **Total Projects**                |      **12**       |
-| **Total Lessons**                 |      **80**       |
-| **Micro-Lessons** (×2 per lesson) |      **160**      |
-| **Estimated Duration**            | **~90-100 hours** |
+| Metric                            |       Count        |
+| :-------------------------------- | :----------------: |
+| **Total Projects**                |       **12**       |
+| **Total Lessons**                 |       **86**       |
+| **Micro-Lessons** (×2 per lesson) |      **172**       |
+| **Estimated Duration**            | **~100-110 hours** |
 
 **Skill Progression:**
 
